@@ -10,7 +10,7 @@ import UIKit
 
 class NavigationBarViewController: UIViewController {
     
-    public func setupNavigationBarItem(){
+    public func setupNavigationBarItem(navigationItem: UINavigationItem){
         //tengah
         let titleImageView = UIImageView(image: #imageLiteral(resourceName: "message"))
         titleImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)

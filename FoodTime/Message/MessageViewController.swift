@@ -8,20 +8,18 @@
 
 import UIKit
 
-class MessageViewController: UIViewController {
+class MessageViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        
     }
     
-   
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @objc func handleLogout(){
+        let loginController = LoginController()
+        present(loginController, animated: true, completion: nil)
+        
     }
-    
-
 }

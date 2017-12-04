@@ -10,13 +10,23 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    var navBar: NavigationBarViewController!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navBar.setupNavigationBarItem()
+        setupNavigationBarItem()
+        
         
         // Do any additional setup after loading the view.
+    }
+    public func setupNavigationBarItem(){
+        //tengah
+//        let titleImageView = UIImageView(image: #imageLiteral(resourceName: "message"))
+//        titleImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        titleImageView.contentMode = .scaleAspectFit
+//        navigationItem.titleView = titleImageView
+        self.navigationItem.title = "FoodTime"
+        
+        let rightButton = UIBarButtonItem(image: UIImage(named: "add"), style: .plain, target: self, action: #selector(getter: UIDynamicBehavior.action))
+        self.navigationItem.rightBarButtonItem  = rightButton
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +34,9 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func messageDidTap() {
+        
+    }
 
     /*
     // MARK: - Navigation

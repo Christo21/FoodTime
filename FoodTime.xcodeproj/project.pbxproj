@@ -10,6 +10,7 @@
 		F312258D1FCE92BA005E8CA0 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312258C1FCE92BA005E8CA0 /* MessageViewController.swift */; };
 		F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */; };
 		F31225921FCE9913005E8CA0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31225911FCE9913005E8CA0 /* HomeViewController.swift */; };
+		F324D5F21FCEB8F00093172F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D5F11FCEB8F00093172F /* LoginController.swift */; };
 		F3BFC2951FCD339E00062C00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFC2941FCD339E00062C00 /* AppDelegate.swift */; };
 		F3BFC2971FCD339E00062C00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFC2961FCD339E00062C00 /* ViewController.swift */; };
 		F3BFC29A1FCD339E00062C00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC2981FCD339E00062C00 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		F312258C1FCE92BA005E8CA0 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
 		F31225911FCE9913005E8CA0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F324D5F11FCEB8F00093172F /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		F3BFC2911FCD339E00062C00 /* FoodTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3BFC2941FCD339E00062C00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3BFC2961FCD339E00062C00 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
+		F324D5F01FCEB8DD0093172F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F324D5F11FCEB8F00093172F /* LoginController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		F3BFC2881FCD339E00062C00 = {
 			isa = PBXGroup;
 			children = (
@@ -80,10 +90,12 @@
 		F3BFC2931FCD339E00062C00 /* FoodTime */ = {
 			isa = PBXGroup;
 			children = (
+				F324D5F01FCEB8DD0093172F /* Login */,
 				F312258E1FCE92C9005E8CA0 /* Message */,
 				F3BFC2941FCD339E00062C00 /* AppDelegate.swift */,
 				F3BFC2961FCD339E00062C00 /* ViewController.swift */,
 				F31225911FCE9913005E8CA0 /* HomeViewController.swift */,
+				F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */,
 				F3BFC2AB1FCE485C00062C00 /* Discover.storyboard */,
 				F3BFC2DB1FCE8DAC00062C00 /* Message.storyboard */,
 				F3BFC2AE1FCE488300062C00 /* Share.storyboard */,
@@ -94,7 +106,6 @@
 				F3BFC2A01FCD339E00062C00 /* LaunchScreen.storyboard */,
 				F3BFC2A31FCD339E00062C00 /* Info.plist */,
 				F3BFC29B1FCD339E00062C00 /* FoodTime.xcdatamodeld */,
-				F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */,
 			);
 			path = FoodTime;
 			sourceTree = "<group>";
@@ -182,6 +193,7 @@
 				F3BFC2951FCD339E00062C00 /* AppDelegate.swift in Sources */,
 				F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */,
 				F31225921FCE9913005E8CA0 /* HomeViewController.swift in Sources */,
+				F324D5F21FCEB8F00093172F /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
