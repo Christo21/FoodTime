@@ -7,28 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F312258D1FCE92BA005E8CA0 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312258C1FCE92BA005E8CA0 /* MessageViewController.swift */; };
 		F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */; };
-		F31225921FCE9913005E8CA0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31225911FCE9913005E8CA0 /* HomeViewController.swift */; };
 		F324D5F21FCEB8F00093172F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D5F11FCEB8F00093172F /* LoginController.swift */; };
+		F324D6311FD52EE80093172F /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D6301FD52EE80093172F /* MyListViewController.swift */; };
+		F324D6331FD52F120093172F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D6321FD52F120093172F /* Item.swift */; };
+		F324D6351FD52F340093172F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D6341FD52F340093172F /* User.swift */; };
+		F324D6371FD52F680093172F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D6361FD52F680093172F /* HomeTableViewCell.swift */; };
+		F324D63A1FD53B0F0093172F /* DetailDiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D6391FD53B0F0093172F /* DetailDiscoverViewController.swift */; };
+		F324D63C1FD53B590093172F /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D63B1FD53B590093172F /* DiscoverViewController.swift */; };
+		F324D63E1FD53B8C0093172F /* DiscoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D63D1FD53B8C0093172F /* DiscoverCollectionViewCell.swift */; };
+		F324D6411FD54F920093172F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D6401FD54F920093172F /* ProfileViewController.swift */; };
+		F3720B501FD64990008E9CF3 /* AddFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3720B4F1FD64990008E9CF3 /* AddFormViewController.swift */; };
 		F3BFC2951FCD339E00062C00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFC2941FCD339E00062C00 /* AppDelegate.swift */; };
 		F3BFC2971FCD339E00062C00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFC2961FCD339E00062C00 /* ViewController.swift */; };
 		F3BFC29A1FCD339E00062C00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC2981FCD339E00062C00 /* Main.storyboard */; };
 		F3BFC29D1FCD339E00062C00 /* FoodTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3BFC29B1FCD339E00062C00 /* FoodTime.xcdatamodeld */; };
 		F3BFC29F1FCD339E00062C00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC29E1FCD339E00062C00 /* Assets.xcassets */; };
 		F3BFC2A21FCD339E00062C00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC2A01FCD339E00062C00 /* LaunchScreen.storyboard */; };
-		F3BFC2AA1FCE41A100062C00 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC2A91FCE41A100062C00 /* Home.storyboard */; };
-		F3BFC2AD1FCE485C00062C00 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC2AB1FCE485C00062C00 /* Discover.storyboard */; };
-		F3BFC2AF1FCE488300062C00 /* Share.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC2AE1FCE488300062C00 /* Share.storyboard */; };
-		F3BFC2B21FCE489700062C00 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC2B01FCE489700062C00 /* Profile.storyboard */; };
-		F3BFC2DD1FCE8DAC00062C00 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC2DB1FCE8DAC00062C00 /* Message.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F312258C1FCE92BA005E8CA0 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
-		F31225911FCE9913005E8CA0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F324D5F11FCEB8F00093172F /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		F324D6301FD52EE80093172F /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
+		F324D6321FD52F120093172F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		F324D6341FD52F340093172F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F324D6361FD52F680093172F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		F324D6391FD53B0F0093172F /* DetailDiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDiscoverViewController.swift; sourceTree = "<group>"; };
+		F324D63B1FD53B590093172F /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		F324D63D1FD53B8C0093172F /* DiscoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCollectionViewCell.swift; sourceTree = "<group>"; };
+		F324D6401FD54F920093172F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F3720B4F1FD64990008E9CF3 /* AddFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFormViewController.swift; sourceTree = "<group>"; };
 		F3BFC2911FCD339E00062C00 /* FoodTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3BFC2941FCD339E00062C00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3BFC2961FCD339E00062C00 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,11 +46,6 @@
 		F3BFC29E1FCD339E00062C00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3BFC2A11FCD339E00062C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3BFC2A31FCD339E00062C00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F3BFC2A91FCE41A100062C00 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		F3BFC2AC1FCE485C00062C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = FoodTime/Base.lproj/Discover.storyboard; sourceTree = "<group>"; };
-		F3BFC2AE1FCE488300062C00 /* Share.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Share.storyboard; sourceTree = "<group>"; };
-		F3BFC2B11FCE489700062C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = FoodTime/Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
-		F3BFC2DC1FCE8DAC00062C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = FoodTime/Base.lproj/Message.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,6 @@
 		F312258E1FCE92C9005E8CA0 /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				F312258C1FCE92BA005E8CA0 /* MessageViewController.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -69,6 +72,43 @@
 				F324D5F11FCEB8F00093172F /* LoginController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		F324D62F1FD52EAC0093172F /* MyList */ = {
+			isa = PBXGroup;
+			children = (
+				F324D6301FD52EE80093172F /* MyListViewController.swift */,
+				F324D6321FD52F120093172F /* Item.swift */,
+				F324D6341FD52F340093172F /* User.swift */,
+				F324D6361FD52F680093172F /* HomeTableViewCell.swift */,
+			);
+			path = MyList;
+			sourceTree = "<group>";
+		};
+		F324D6381FD53AA40093172F /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				F324D6391FD53B0F0093172F /* DetailDiscoverViewController.swift */,
+				F324D63B1FD53B590093172F /* DiscoverViewController.swift */,
+				F324D63D1FD53B8C0093172F /* DiscoverCollectionViewCell.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		F324D63F1FD548A50093172F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F324D6401FD54F920093172F /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F3720B4E1FD64973008E9CF3 /* Add Item */ = {
+			isa = PBXGroup;
+			children = (
+				F3720B4F1FD64990008E9CF3 /* AddFormViewController.swift */,
+			);
+			path = "Add Item";
 			sourceTree = "<group>";
 		};
 		F3BFC2881FCD339E00062C00 = {
@@ -90,17 +130,15 @@
 		F3BFC2931FCD339E00062C00 /* FoodTime */ = {
 			isa = PBXGroup;
 			children = (
+				F3720B4E1FD64973008E9CF3 /* Add Item */,
+				F324D63F1FD548A50093172F /* Profile */,
+				F324D6381FD53AA40093172F /* Discover */,
+				F324D62F1FD52EAC0093172F /* MyList */,
 				F324D5F01FCEB8DD0093172F /* Login */,
 				F312258E1FCE92C9005E8CA0 /* Message */,
 				F3BFC2941FCD339E00062C00 /* AppDelegate.swift */,
 				F3BFC2961FCD339E00062C00 /* ViewController.swift */,
-				F31225911FCE9913005E8CA0 /* HomeViewController.swift */,
 				F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */,
-				F3BFC2AB1FCE485C00062C00 /* Discover.storyboard */,
-				F3BFC2DB1FCE8DAC00062C00 /* Message.storyboard */,
-				F3BFC2AE1FCE488300062C00 /* Share.storyboard */,
-				F3BFC2A91FCE41A100062C00 /* Home.storyboard */,
-				F3BFC2B01FCE489700062C00 /* Profile.storyboard */,
 				F3BFC2981FCD339E00062C00 /* Main.storyboard */,
 				F3BFC29E1FCD339E00062C00 /* Assets.xcassets */,
 				F3BFC2A01FCD339E00062C00 /* LaunchScreen.storyboard */,
@@ -171,12 +209,7 @@
 			files = (
 				F3BFC2A21FCD339E00062C00 /* LaunchScreen.storyboard in Resources */,
 				F3BFC29F1FCD339E00062C00 /* Assets.xcassets in Resources */,
-				F3BFC2AF1FCE488300062C00 /* Share.storyboard in Resources */,
-				F3BFC2AD1FCE485C00062C00 /* Discover.storyboard in Resources */,
 				F3BFC29A1FCD339E00062C00 /* Main.storyboard in Resources */,
-				F3BFC2B21FCE489700062C00 /* Profile.storyboard in Resources */,
-				F3BFC2DD1FCE8DAC00062C00 /* Message.storyboard in Resources */,
-				F3BFC2AA1FCE41A100062C00 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,12 +220,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3720B501FD64990008E9CF3 /* AddFormViewController.swift in Sources */,
+				F324D63A1FD53B0F0093172F /* DetailDiscoverViewController.swift in Sources */,
 				F3BFC29D1FCD339E00062C00 /* FoodTime.xcdatamodeld in Sources */,
 				F3BFC2971FCD339E00062C00 /* ViewController.swift in Sources */,
-				F312258D1FCE92BA005E8CA0 /* MessageViewController.swift in Sources */,
+				F324D6311FD52EE80093172F /* MyListViewController.swift in Sources */,
 				F3BFC2951FCD339E00062C00 /* AppDelegate.swift in Sources */,
+				F324D6331FD52F120093172F /* Item.swift in Sources */,
+				F324D63E1FD53B8C0093172F /* DiscoverCollectionViewCell.swift in Sources */,
+				F324D6351FD52F340093172F /* User.swift in Sources */,
+				F324D6371FD52F680093172F /* HomeTableViewCell.swift in Sources */,
+				F324D63C1FD53B590093172F /* DiscoverViewController.swift in Sources */,
+				F324D6411FD54F920093172F /* ProfileViewController.swift in Sources */,
 				F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */,
-				F31225921FCE9913005E8CA0 /* HomeViewController.swift in Sources */,
 				F324D5F21FCEB8F00093172F /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,30 +254,6 @@
 				F3BFC2A11FCD339E00062C00 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		F3BFC2AB1FCE485C00062C00 /* Discover.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3BFC2AC1FCE485C00062C00 /* Base */,
-			);
-			name = Discover.storyboard;
-			sourceTree = "<group>";
-		};
-		F3BFC2B01FCE489700062C00 /* Profile.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3BFC2B11FCE489700062C00 /* Base */,
-			);
-			name = Profile.storyboard;
-			sourceTree = "<group>";
-		};
-		F3BFC2DB1FCE8DAC00062C00 /* Message.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3BFC2DC1FCE8DAC00062C00 /* Base */,
-			);
-			name = Message.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -355,6 +371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DZ8GLT4E39;
 				INFOPLIST_FILE = FoodTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.binus.FoodTime;
@@ -369,6 +386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DZ8GLT4E39;
 				INFOPLIST_FILE = FoodTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.binus.FoodTime;
