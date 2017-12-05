@@ -70,7 +70,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        setupNavigationBarItem()
         loadItems()
         homeTableView.reloadData()
         self.homeTableView.delegate = self
@@ -83,7 +83,21 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    public func setupNavigationBarItem(){
+        //kiri
+        let leftButton = UIButton(type: .system)
+        leftButton.setImage(#imageLiteral(resourceName: "mail").withRenderingMode(.alwaysOriginal), for: .normal)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        leftButton.contentMode = .scaleAspectFit
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+        
+        //kanan
+        let rightButton = UIButton(type: .system)
+        rightButton.setImage(#imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), for: .normal)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        rightButton.contentMode = .scaleAspectFit
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
+    }
     
     /*
      // MARK: - Navigation
