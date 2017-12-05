@@ -10,6 +10,8 @@ import UIKit
 
 class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     
+    
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var priceField: UITextField!
     @IBOutlet weak var notesView: UITextView!
