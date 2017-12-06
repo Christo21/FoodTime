@@ -63,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B0BFC2B1FD6FC2300017A02 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				6B0BFC2C1FD6FCD400017A02 /* CoreDataClass.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
 		F312258E1FCE92C9005E8CA0 /* Message */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +153,8 @@
 				F30B373C1FD6A2C800F94768 /* Share.swift */,
 				F3BFC2961FCD339E00062C00 /* ViewController.swift */,
 				F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */,
+				F3BFC2961FCD339E00062C00 /* ViewController.swift */,
+				F3BFC2941FCD339E00062C00 /* AppDelegate.swift */,
 				F3BFC2981FCD339E00062C00 /* Main.storyboard */,
 				F3BFC29E1FCD339E00062C00 /* Assets.xcassets */,
 				F3BFC2A01FCD339E00062C00 /* LaunchScreen.storyboard */,
@@ -232,6 +242,7 @@
 				F3BFC2971FCD339E00062C00 /* ViewController.swift in Sources */,
 				F324D6311FD52EE80093172F /* MyListViewController.swift in Sources */,
 				F3BFC2951FCD339E00062C00 /* AppDelegate.swift in Sources */,
+				6B0BFC2D1FD6FCD400017A02 /* CoreDataClass.swift in Sources */,
 				F324D6331FD52F120093172F /* Item.swift in Sources */,
 				F324D63E1FD53B8C0093172F /* DiscoverCollectionViewCell.swift in Sources */,
 				F30B373B1FD6A15000F94768 /* List.swift in Sources */,
