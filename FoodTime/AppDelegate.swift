@@ -100,5 +100,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    
+    /////////////Added by Alfian///////////////
+    //////////Notification Support/////////////
+    
+    
+    ///////////////////////////////////////////
 }
 
