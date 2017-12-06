@@ -19,6 +19,17 @@ class Item{
     var registDate: Date!
     var expiredDate: Date!
     
+    init(idItem: String, name: String, type: String, quantity: Int, image: String, price: String, note: String, registDate: Date, expiredDate: Date) {
+        self.idItem = idItem
+        self.name = name
+        self.type = type
+        self.quantity = quantity
+        self.image = image
+        self.price = price
+        self.note = note
+        self.setRegistDate(registDate: registDate)
+        self.setExpiredDate(expiredDate: expiredDate)
+    }
     init(idItem: String, name: String, type: String, quantity: Int, image: String, price: String, note: String, registDate: String, expiredDate: String) {
         self.idItem = idItem
         self.name = name
@@ -33,11 +44,11 @@ class Item{
     
     private func stringToDate(dt: String) -> Date {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         print(dt)
         let date = dateFormatter.date(from: dt)!
         let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         
         return calendar.date(from:components)!
     }

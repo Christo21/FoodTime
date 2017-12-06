@@ -23,7 +23,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         let cell = homeTableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! HomeTableViewCell
         
         cell.detailImage.image? = UIImage(named: homeItem[indexPath.row].getImage())!
-        cell.expiredDateOfImage.text = String(describing: homeItem[indexPath.row].getExipredDate())
+        cell.expiredDateOfImage.text = String(String(describing: homeItem[indexPath.row].getExipredDate()).prefix(19))
         cell.imageName.text = homeItem[indexPath.row].getName()
         cell.noteOfImage.text = homeItem[indexPath.row].getNote()
         
@@ -49,11 +49,11 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     func loadItems(){
-        let Burger: Item = Item(idItem: "1", name: "Burger", type: "Food", quantity: 2, image: "burger", price: "20000", note: "This is your Burger", registDate: "2017/12/1", expiredDate: "2017/12/3")
-        let Spaghetti: Item = Item(idItem: "2", name: "Spaghetti", type: "Food", quantity: 1, image: "spaghetti", price: "30000", note: "This is your Spaghetti", registDate: "2017/12/1", expiredDate: "2017/12/3")
-        let Fish: Item = Item(idItem: "3", name: "Fish", type: "Food", quantity: 3, image: "fish", price: "40000", note: "This is your Fish", registDate: "2017/12/1", expiredDate: "2017/12/3")
-        let Paprika: Item = Item(idItem: "4", name: "paprika", type: "Vegetable", quantity: 10, image: "paprika", price: "50000", note: "This is your paprika", registDate: "2017/12/1", expiredDate: "2017/12/3")
-        let Risole: Item = Item(idItem: "5", name: "Risole", type: "Food", quantity: 5, image: "risole", price: "60000", note: "This is your Risole", registDate: "2017/12/1", expiredDate: "2017/12/3")
+        let Burger: Item = Item(idItem: "1", name: "Burger", type: "Food", quantity: 2, image: "camera", price: "20000", note: "This is your Burger", registDate: Date(timeIntervalSinceNow: 0), expiredDate: Date(timeIntervalSinceNow: 60*60*24*4))
+        let Spaghetti: Item = Item(idItem: "2", name: "Spaghetti", type: "Food", quantity: 1, image: "camera", price: "30000", note: "This is your Spaghetti", registDate: Date(timeIntervalSinceNow: 1), expiredDate: Date(timeIntervalSinceNow: 120))
+        let Fish: Item = Item(idItem: "3", name: "Fish", type: "Food", quantity: 3, image: "camera", price: "40000", note: "This is your Fish", registDate: Date(timeIntervalSinceNow: 2), expiredDate: Date(timeIntervalSinceNow: 180))
+        let Paprika: Item = Item(idItem: "4", name: "paprika", type: "Vegetable", quantity: 10, image: "camera", price: "50000", note: "This is your paprika", registDate: Date(timeIntervalSinceNow: 3), expiredDate: Date(timeIntervalSinceNow: 240))
+        let Risole: Item = Item(idItem: "5", name: "Risole", type: "Food", quantity: 5, image: "camera", price: "60000", note: "This is your Risole", registDate: Date(timeIntervalSinceNow: 4), expiredDate: Date(timeIntervalSinceNow: 300))
         
         var items: [Item] = []
         items.append(Burger)
@@ -62,9 +62,12 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         items.append(Paprika)
         items.append(Risole)
         homeItem = items
+        
+        delegate?.scheduleNotification(Burger)
+        delegate?.scheduleNotification(Spaghetti)
     }
     
-    
+    let delegate = UIApplication.shared.delegate as? AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()

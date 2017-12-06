@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F30B373B1FD6A15000F94768 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B373A1FD6A15000F94768 /* List.swift */; };
+		6B653FB71FD7A06D00501D13 /* CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */; };
 		F30B373D1FD6A2C800F94768 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B373C1FD6A2C800F94768 /* Share.swift */; };
 		F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */; };
 		F324D5F21FCEB8F00093172F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D5F11FCEB8F00093172F /* LoginController.swift */; };
@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F30B373A1FD6A15000F94768 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClass.swift; sourceTree = "<group>"; };
 		F30B373C1FD6A2C800F94768 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
 		F324D5F11FCEB8F00093172F /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -63,12 +63,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6B0BFC2B1FD6FC2300017A02 /* Class */ = {
+		6B653FB51FD7A03100501D13 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				6B0BFC2C1FD6FCD400017A02 /* CoreDataClass.swift */,
+				F324D6321FD52F120093172F /* Item.swift */,
+				F30B373C1FD6A2C800F94768 /* Share.swift */,
+				F324D6341FD52F340093172F /* User.swift */,
+				6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */,
 			);
-			path = Class;
+			name = Class;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		F312258E1FCE92C9005E8CA0 /* Message */ = {
@@ -146,12 +150,7 @@
 				F324D62F1FD52EAC0093172F /* MyList */,
 				F324D5F01FCEB8DD0093172F /* Login */,
 				F312258E1FCE92C9005E8CA0 /* Message */,
-				F3BFC2941FCD339E00062C00 /* AppDelegate.swift */,
-				F324D6321FD52F120093172F /* Item.swift */,
-				F30B373A1FD6A15000F94768 /* List.swift */,
-				F324D6341FD52F340093172F /* User.swift */,
-				F30B373C1FD6A2C800F94768 /* Share.swift */,
-				F3BFC2961FCD339E00062C00 /* ViewController.swift */,
+				6B653FB51FD7A03100501D13 /* Class */,
 				F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */,
 				F3BFC2961FCD339E00062C00 /* ViewController.swift */,
 				F3BFC2941FCD339E00062C00 /* AppDelegate.swift */,
@@ -242,10 +241,9 @@
 				F3BFC2971FCD339E00062C00 /* ViewController.swift in Sources */,
 				F324D6311FD52EE80093172F /* MyListViewController.swift in Sources */,
 				F3BFC2951FCD339E00062C00 /* AppDelegate.swift in Sources */,
-				6B0BFC2D1FD6FCD400017A02 /* CoreDataClass.swift in Sources */,
 				F324D6331FD52F120093172F /* Item.swift in Sources */,
+				6B653FB71FD7A06D00501D13 /* CoreDataClass.swift in Sources */,
 				F324D63E1FD53B8C0093172F /* DiscoverCollectionViewCell.swift in Sources */,
-				F30B373B1FD6A15000F94768 /* List.swift in Sources */,
 				F30B373D1FD6A2C800F94768 /* Share.swift in Sources */,
 				F324D6351FD52F340093172F /* User.swift in Sources */,
 				F324D6371FD52F680093172F /* HomeTableViewCell.swift in Sources */,
