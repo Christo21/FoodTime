@@ -11,5 +11,4 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var detailImageView: UIImageView!
     
-    
 }
