@@ -10,7 +10,10 @@
 		05283C881FD66A2600DCEFC7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05283C871FD66A2600DCEFC7 /* RegisterViewController.swift */; };
 		05283C8A1FD6719100DCEFC7 /* DesignableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05283C891FD6719100DCEFC7 /* DesignableTextField.swift */; };
 		05283C8E1FD6897900DCEFC7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05283C8D1FD6897900DCEFC7 /* LoginViewController.swift */; };
-		05283C901FD692B800DCEFC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05283C8F1FD692B700DCEFC7 /* GoogleService-Info.plist */; };
+		05DE61BF1FD7927A0041E059 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05DE61BE1FD7927A0041E059 /* GoogleService-Info.plist */; };
+		05DE61C11FD7B0790041E059 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE61C01FD7B0790041E059 /* ChatViewController.swift */; };
+		05DE61C31FD7B2340041E059 /* messageDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE61C21FD7B2340041E059 /* messageDetailTableViewCell.swift */; };
+		05DE61C51FD7B2E90041E059 /* MessageDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE61C41FD7B2E90041E059 /* MessageDetail.swift */; };
 		9C0A4BC67927033C6F969CF7 /* Pods_FoodTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CE46DE2C7E7F00C868B825 /* Pods_FoodTime.framework */; };
 		F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */; };
 		F324D5F21FCEB8F00093172F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D5F11FCEB8F00093172F /* LoginController.swift */; };
@@ -35,7 +38,10 @@
 		05283C871FD66A2600DCEFC7 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		05283C891FD6719100DCEFC7 /* DesignableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTextField.swift; sourceTree = "<group>"; };
 		05283C8D1FD6897900DCEFC7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		05283C8F1FD692B700DCEFC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		05DE61BE1FD7927A0041E059 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		05DE61C01FD7B0790041E059 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		05DE61C21FD7B2340041E059 /* messageDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageDetailTableViewCell.swift; sourceTree = "<group>"; };
+		05DE61C41FD7B2E90041E059 /* MessageDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetail.swift; sourceTree = "<group>"; };
 		171E8F86690C14E314CDA982 /* Pods-FoodTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.debug.xcconfig"; sourceTree = "<group>"; };
 		63E6C276B000C8814DC584D6 /* Pods-FoodTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.release.xcconfig"; sourceTree = "<group>"; };
 		D1CE46DE2C7E7F00C868B825 /* Pods_FoodTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,13 +179,16 @@
 				F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */,
 				05283C8D1FD6897900DCEFC7 /* LoginViewController.swift */,
 				F3BFC2981FCD339E00062C00 /* Main.storyboard */,
+				05DE61C21FD7B2340041E059 /* messageDetailTableViewCell.swift */,
+				05DE61C41FD7B2E90041E059 /* MessageDetail.swift */,
+				05DE61C01FD7B0790041E059 /* ChatViewController.swift */,
 				05283C891FD6719100DCEFC7 /* DesignableTextField.swift */,
 				05283C871FD66A2600DCEFC7 /* RegisterViewController.swift */,
 				F3BFC29E1FCD339E00062C00 /* Assets.xcassets */,
 				F3BFC2A01FCD339E00062C00 /* LaunchScreen.storyboard */,
 				F3BFC2A31FCD339E00062C00 /* Info.plist */,
-				05283C8F1FD692B700DCEFC7 /* GoogleService-Info.plist */,
 				F3BFC29B1FCD339E00062C00 /* FoodTime.xcdatamodeld */,
+				05DE61BE1FD7927A0041E059 /* GoogleService-Info.plist */,
 			);
 			path = FoodTime;
 			sourceTree = "<group>";
@@ -247,7 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3BFC2A21FCD339E00062C00 /* LaunchScreen.storyboard in Resources */,
-				05283C901FD692B800DCEFC7 /* GoogleService-Info.plist in Resources */,
+				05DE61BF1FD7927A0041E059 /* GoogleService-Info.plist in Resources */,
 				F3BFC29F1FCD339E00062C00 /* Assets.xcassets in Resources */,
 				F3BFC29A1FCD339E00062C00 /* Main.storyboard in Resources */,
 			);
@@ -318,12 +327,15 @@
 				F324D6331FD52F120093172F /* Item.swift in Sources */,
 				F324D63E1FD53B8C0093172F /* DiscoverCollectionViewCell.swift in Sources */,
 				F324D6351FD52F340093172F /* User.swift in Sources */,
+				05DE61C51FD7B2E90041E059 /* MessageDetail.swift in Sources */,
 				F324D6371FD52F680093172F /* HomeTableViewCell.swift in Sources */,
 				05283C8A1FD6719100DCEFC7 /* DesignableTextField.swift in Sources */,
 				F324D63C1FD53B590093172F /* DiscoverViewController.swift in Sources */,
 				05283C8E1FD6897900DCEFC7 /* LoginViewController.swift in Sources */,
 				F324D6411FD54F920093172F /* ProfileViewController.swift in Sources */,
+				05DE61C31FD7B2340041E059 /* messageDetailTableViewCell.swift in Sources */,
 				F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */,
+				05DE61C11FD7B0790041E059 /* ChatViewController.swift in Sources */,
 				F324D5F21FCEB8F00093172F /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

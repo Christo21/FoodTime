@@ -7,10 +7,26 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
+import SwiftKeychainWrapper
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UINavigationControllerDelegate {
 
+    
+    
     @IBAction func buttonRegister(_ sender: Any) {
+        Auth.auth().createUser(withEmail: emailField, password: passwordField, completion: {(user, error) in
+            if error != nil {
+                print("Cant create user")
+            } else {
+                if let user = user {
+                    self.userUid = user.uid
+                }
+            }
+           
+        })
         
     }
     @IBOutlet weak var labelColor: UILabel!
@@ -25,6 +41,29 @@ class RegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBOutlet weak var textFieldUserName: UITextField!
+    
+    var userUid: String!
+    var emailField: String!
+    var passwordField: String!
+    var username: String!
+    
+    
+    //override func viewDidLoad(){
+      //  super.viewDidLoad()
+        
+    //}
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        if let _ = KeychainWrapper.standard.string(forKey: "uid") {
+            performSegue(withIdentifier: "toMessage", sender: nil)
+        }
+    }
+    
+    
+    @IBAction func cancel (_ sender: AnyObject){
+        dismiss(animated: true, completion: nil)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
