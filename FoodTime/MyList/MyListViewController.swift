@@ -95,8 +95,18 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         rightButton.setImage(#imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), for: .normal)
         rightButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         rightButton.contentMode = .scaleAspectFit
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"plus"), style: .plain, target: self, action: #selector(addTapped))
+        
     }
+    
+    @objc func addTapped(sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "addItem", sender: nil)
+    }
+    
+    
     
     /*
      // MARK: - Navigation

@@ -110,7 +110,7 @@
                     <navigationItem key="navigationItem" title="My List" id="YyR-Qi-BV1">
                         <barButtonItem key="rightBarButtonItem" title="add" image="plus" id="ZZq-B0-isC">
                             <connections>
-                                <segue destination="0pg-Mp-wHJ" kind="show" id="zzp-UA-qwl"/>
+                                <segue destination="0pg-Mp-wHJ" kind="show" identifier="addItem" id="xHM-bU-lmV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -257,13 +257,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zE3-gL-Rkn">
-                                <rect key="frame" x="176" y="256" width="190" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Expired Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38G-yg-Jg9">
                                 <rect key="frame" x="9" y="133" width="350" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -300,12 +293,8 @@
                                 </date>
                                 <locale key="locale" localeIdentifier="id_ID"/>
                             </datePicker>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6HE-oD-yQk">
-                                <rect key="frame" x="33" y="263" width="135" height="135"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7wm-2l-Tw2">
-                                <rect key="frame" x="203" y="298" width="136" height="100"/>
+                                <rect key="frame" x="192" y="298" width="136" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdb-ed-M0a">
@@ -322,14 +311,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8s8-Xr-iHW">
-                                <rect key="frame" x="39" y="271" width="124" height="124"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94h-2k-Hf6">
+                                <rect key="frame" x="51" y="278" width="110" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                </accessibility>
                                 <state key="normal" image="camera"/>
                                 <connections>
-                                    <action selector="photoButtonDidTap:" destination="0pg-Mp-wHJ" eventType="touchUpInside" id="81D-o8-uXj"/>
+                                    <action selector="photoButtonDidTap:" destination="0pg-Mp-wHJ" eventType="touchUpInside" id="SRM-KT-d8X"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zE3-gL-Rkn">
+                                <rect key="frame" x="164" y="269" width="190" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="LtZ-YF-jEh"/>
@@ -339,14 +338,14 @@
                         <outlet property="datePicker" destination="NCm-Q8-MGL" id="tba-2f-wdR"/>
                         <outlet property="nameField" destination="03M-CC-agv" id="zBY-CV-hid"/>
                         <outlet property="notesView" destination="OgK-bb-mcj" id="At8-Vq-ubD"/>
-                        <outlet property="photo" destination="6HE-oD-yQk" id="N5F-Fi-L5k"/>
+                        <outlet property="photo" destination="94h-2k-Hf6" id="Flo-xa-Lo7"/>
                         <outlet property="priceField" destination="mkk-Xd-pcC" id="psq-Jh-DAF"/>
                         <outlet property="qtyPicker" destination="7wm-2l-Tw2" id="aLW-86-kea"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TfN-Q7-0Hy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2612" y="1431"/>
+            <point key="canvasLocation" x="2612" y="1430.7346326836582"/>
         </scene>
         <!--Profile-->
         <scene sceneID="UHs-5m-yZm">
@@ -625,14 +624,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roC-cV-Th8">
-                                <rect key="frame" x="73" y="283" width="124" height="124"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="camera"/>
-                                <connections>
-                                    <action selector="photoButtonDidTap:" destination="0pg-Mp-wHJ" eventType="touchUpInside" id="dpZ-ue-7dI"/>
-                                </connections>
-                            </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KVH-Vp-DBR">
                                 <rect key="frame" x="26" y="415" width="136" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
