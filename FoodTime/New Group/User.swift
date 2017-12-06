@@ -15,7 +15,7 @@ class User{
     var address: String
     var id: String
     var location: CLLocationManager
-    var list: [List]
+    var list: [Item]
     var share: [Share]
     //var chatroom: [Chatroom]
     
@@ -45,7 +45,7 @@ class User{
     func getLocation() -> CLLocationManager {
         return location
     }
-    func getList() -> [List] {
+    func getList() -> [Item] {
         return list
     }
     func getShare() -> [Share] {
@@ -70,7 +70,7 @@ class User{
     }
     
     //addItem
-    func addList(list: List) {
+    func addList(list: Item) {
         self.list.append(list)
     }
     func addShare(share: Share) {

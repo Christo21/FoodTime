@@ -18,6 +18,13 @@ class Share: Item {
         self.quantityToShare = quantityToShare
         super.init(idItem: idItem, name: name, type: type, quantity: quantity, image: image, price: price, note: note, registDate: registDate, expiredDate: expiredDate)
     }
+    init(quantityToShare: Int, quantityToClaim: Int, idItem: String, name: String, type: String, quantity: Int, image: String, price: String, note: String, registDate: Date, expiredDate: Date) {
+        self.quantityToClaim = quantityToShare
+        self.quantityToShare = quantityToShare
+        super.init(idItem: idItem, name: name, type: type, quantity: quantity, image: image, price: price, note: note, registDate: registDate, expiredDate: expiredDate)
+    }
+    
+    
     func getQuantityToShare() -> Int {
         return quantityToShare
     }

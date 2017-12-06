@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 //        let navigationBarAppearace = UINavigationBar.appearance()
 //        navigationBarAppearace.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 //        navigationBarAppearace.barTintColor = #colorLiteral(red: 0.2039215686, green: 0.5960784314, blue: 0.8588235294, alpha: 1)
@@ -55,7 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - Core Data stack
-
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -98,6 +98,116 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    /////////////Added by Alfian///////////////
+    //////////Notification Support/////////////
+    func scheduleNotification(_ item: Item) {
+        let calendar = Calendar(identifier: .gregorian)
+        let components = calendar.dateComponents(in: .current, from: Date(timeIntervalSinceNow: 60))
+        let newComponents = DateComponents(calendar: calendar, timeZone: .current, month: components.month, day: components.day, hour: components.hour, minute: components.minute)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: false)
+        let content = UNMutableNotificationContent()
+        content.title = "FoodTime"
+        
+        let remainingTime = calendar.dateComponents([.day,.hour], from: Date(timeIntervalSinceNow: 0), to: item.getExipredDate())
+        guard let remainingDay = remainingTime.day else {return}
+        guard let remainingHour = remainingTime.hour else {return}
+        content.body = "Your \(item.getName()) will be expired in \(remainingDay) day(s) \(remainingHour) hour(s). If you let it, then you will waste your Rp. \(item.price)."
+        content.sound = UNNotificationSound.default()
+        content.categoryIdentifier = "myCategory"
+        
+        //
+        
+        if let resourcePath = Bundle.main.resourcePath {
+            let imgName = "RedApple.jpg"
+            let path = resourcePath + "/" + imgName
+            print(path)
+        }
+        
+        if let path = Bundle.main.path(forResource: "RedApple", ofType: "jpg") {
+            let url = URL(fileURLWithPath: path)
+            do {
+                let attachment = try UNNotificationAttachment(identifier: "RedApple", url: url, options: nil)
+                content.attachments = [attachment]
+            } catch {
+                print("The attachment was not loaded.")
+            }
+        }
+        //
+        let request = UNNotificationRequest(identifier: String(describing: item.getRegistDate()), content: content, trigger: trigger)
+//        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().add(request) {(error) in
+            if let error = error {
+                print("Uh oh! We had an error: \(error)")
+            }
+        }
+        
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        let remindLaterAction = UNNotificationAction(identifier: "remindLater", title: "Remind me later", options: [])
+        let shareAction = UNNotificationAction(identifier: "share", title: "Share", options: [.foreground])
+        let category = UNNotificationCategory(identifier: "myCategory", actions: [remindLaterAction,shareAction], intentIdentifiers: [], options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+        UNUserNotificationCenter.current().delegate = self
+        
+        registerPushNotification()
+        return true
+    }
+    
+    
+    func deletePendingNotification(_ identifier: [String]){
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notifications) in
+            print(notifications)
+        }
+        
+        //        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: ["textNotification"])
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifier)
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notifications) in
+            print("remaining notification(s): \(notifications)")
+        }
+    }
+    func registerPushNotification(){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {(accepted, error) in
+            if !accepted {
+                print("Notification access denied.")
+            }else{
+                //            self.getNotificationSettings()
+            }
+        }
+    }
+    ///////////////////////////////////////////
+}
 
+extension AppDelegate : UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
+    {
+        let notificationIdentifier = response.notification.request.identifier
+        let buttonIdentifier = response.actionIdentifier
+        let request = response.notification.request
+        var coreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
+        print("Core Data counted: \(coreData.getData().count)")
+        
+        switch buttonIdentifier {
+        case "remindLater":
+            let newDate = Date(timeInterval: 60, since: Date())
+//            scheduleNotification(Item())
+            print(newDate)
+        case "share":
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let otherVC = sb.instantiateViewController(withIdentifier: "share")
+            window?.rootViewController = otherVC
+            print("go to share page")
+        default:
+            return
+        }
+        
+        completionHandler()
+    }
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("foreground notif")
+    }
 }
 
