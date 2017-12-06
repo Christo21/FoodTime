@@ -84,19 +84,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     }
     public func setupNavigationBarItem(){
         //kiri
-        let leftButton = UIButton(type: .system)
-        leftButton.setImage(#imageLiteral(resourceName: "mail").withRenderingMode(.alwaysOriginal), for: .normal)
-        leftButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-        leftButton.contentMode = .scaleAspectFit
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
-        
-        //kanan
-        let rightButton = UIButton(type: .system)
-        rightButton.setImage(#imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), for: .normal)
-        rightButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-        rightButton.contentMode = .scaleAspectFit
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightButton)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"mail"), style: .plain, target: self, action: #selector(addTapped))
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"plus"), style: .plain, target: self, action: #selector(addTapped))
         

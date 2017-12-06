@@ -37,6 +37,9 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.nameField.delegate = self
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         qtyPicker.dataSource = self
@@ -45,6 +48,48 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         nameField.delegate = self
         priceField.delegate = self
         notesView.delegate = self
+        
+        notesView.layer.borderWidth = 1
+        notesView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        notesView.layer.cornerRadius = 8
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "save", style: .plain, target: self, action: #selector(saveItem))
+    }
+    
+    var alert = UIAlertController()
+    @objc func saveItem(sender: UIBarButtonItem){
+        if validating() {
+            let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
+                _ = self.navigationController?.popToRootViewController(animated: false)
+            }))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            
+        }
+        
+    }
+    
+    func validating() -> Bool{
+        if nameField.text == "" {
+            nameField.placeholder = "fill the corect name"
+            return false
+        } else {
+            
+        }
+        return true
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var choosenImage = UIImage()
+        choosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        photo.contentMode = .scaleAspectFit
+        photo.setImage(choosenImage, for: .normal)
+        dismiss(animated: true, completion: nil)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -77,11 +122,9 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     override var canBecomeFirstResponder: Bool {
         return true
     }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.becomeFirstResponder()
     }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == nameField {
             priceField.becomeFirstResponder()
@@ -91,11 +134,38 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         return false
     }
     
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == self.priceField {
+            animation(y: -80)
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+        if textField == self.priceField {
+            animation(y: 80)
+        }
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView == self.notesView {
+            animation(y: -80)
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView == self.notesView {
+            animation(y: 80)
+        }
+    }
+    func animation(y: CGFloat) {
+        UIView .beginAnimations(nil, context: nil)
+        UIView .setAnimationDelegate(self)
+        UIView .setAnimationDuration(0.5)
+        UIView .setAnimationBeginsFromCurrentState(true)
+        self.view.frame = CGRect(x: self.view.frame.origin.x, y: (self.view.frame.origin.y + y), width: self.view.frame.size.width, height: self.view.frame.size.height)
+        UIView .commitAnimations()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 }
 
