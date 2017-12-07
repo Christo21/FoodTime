@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24D324E15A579939E8062955 /* Pods_FoodTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB6E1C35F33766E3442579E /* Pods_FoodTime.framework */; };
+		6B3F75481FD8E2C500D16E86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B3F75471FD8E2C500D16E86 /* GoogleService-Info.plist */; };
 		6B653FB71FD7A06D00501D13 /* CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */; };
 		F30B373D1FD6A2C800F94768 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B373C1FD6A2C800F94768 /* Share.swift */; };
 		F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */; };
@@ -29,7 +31,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AB6E1C35F33766E3442579E /* Pods_FoodTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6729D159CA2A2193F66E116C /* Pods-FoodTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.debug.xcconfig"; sourceTree = "<group>"; };
+		6B3F75471FD8E2C500D16E86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClass.swift; sourceTree = "<group>"; };
+		91B5D6D4C73854A460746221 /* Pods-FoodTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.release.xcconfig"; sourceTree = "<group>"; };
 		F30B373C1FD6A2C800F94768 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
 		F324D5F11FCEB8F00093172F /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -57,12 +63,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24D324E15A579939E8062955 /* Pods_FoodTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A25C03BDB2EC1DDFD786D14 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0AB6E1C35F33766E3442579E /* Pods_FoodTime.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6B653FB51FD7A03100501D13 /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +88,15 @@
 			);
 			name = Class;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		B275CB3DCC370A19C7F2FBB8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6729D159CA2A2193F66E116C /* Pods-FoodTime.debug.xcconfig */,
+				91B5D6D4C73854A460746221 /* Pods-FoodTime.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		F312258E1FCE92C9005E8CA0 /* Message */ = {
@@ -130,6 +154,9 @@
 			children = (
 				F3BFC2931FCD339E00062C00 /* FoodTime */,
 				F3BFC2921FCD339E00062C00 /* Products */,
+				6B3F75471FD8E2C500D16E86 /* GoogleService-Info.plist */,
+				B275CB3DCC370A19C7F2FBB8 /* Pods */,
+				5A25C03BDB2EC1DDFD786D14 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,9 +197,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3BFC2A61FCD339E00062C00 /* Build configuration list for PBXNativeTarget "FoodTime" */;
 			buildPhases = (
+				9958A748BCD0CF3A23838308 /* [CP] Check Pods Manifest.lock */,
 				F3BFC28D1FCD339E00062C00 /* Sources */,
 				F3BFC28E1FCD339E00062C00 /* Frameworks */,
 				F3BFC28F1FCD339E00062C00 /* Resources */,
+				4BF8B0D22B808C204163707F /* [CP] Embed Pods Frameworks */,
+				BBCAC9C63D5370F400CC7DD3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -223,12 +253,75 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3BFC2A21FCD339E00062C00 /* LaunchScreen.storyboard in Resources */,
+				6B3F75481FD8E2C500D16E86 /* GoogleService-Info.plist in Resources */,
 				F3BFC29F1FCD339E00062C00 /* Assets.xcassets in Resources */,
 				F3BFC29A1FCD339E00062C00 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4BF8B0D22B808C204163707F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9958A748BCD0CF3A23838308 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodTime-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBCAC9C63D5370F400CC7DD3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F3BFC28D1FCD339E00062C00 /* Sources */ = {
@@ -385,6 +478,7 @@
 		};
 		F3BFC2A71FCD339E00062C00 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6729D159CA2A2193F66E116C /* Pods-FoodTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -400,6 +494,7 @@
 		};
 		F3BFC2A81FCD339E00062C00 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91B5D6D4C73854A460746221 /* Pods-FoodTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
