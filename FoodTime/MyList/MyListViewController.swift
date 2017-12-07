@@ -8,24 +8,25 @@
 
 import UIKit
 
-class MyListViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate{
+class MyListViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     
     @IBOutlet weak var homeSearchBar: UISearchBar!
     @IBOutlet weak var homeTableView: UITableView!
     
     var homeItem:[Item] = []
+    var filteredItem = [Item]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return homeItem.count
+        return filteredItem.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = homeTableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! HomeTableViewCell
         
-        cell.detailImage.image? = UIImage(named: homeItem[indexPath.row].getImage())!
-        cell.expiredDateOfImage.text = String(String(describing: homeItem[indexPath.row].getExipredDate()).prefix(19))
-        cell.imageName.text = homeItem[indexPath.row].getName()
-        cell.noteOfImage.text = homeItem[indexPath.row].getNote()
+        cell.detailImage.image? = UIImage(named: filteredItem[indexPath.row].getImage())!
+        cell.expiredDateOfImage.text = String(String(describing: filteredItem[indexPath.row].getExipredDate()).prefix(19))
+        cell.imageName.text = filteredItem[indexPath.row].getName()
+        cell.noteOfImage.text = filteredItem[indexPath.row].getNote()
         
         return cell
     }
@@ -40,13 +41,28 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editAction = UIContextualAction(style: .normal, title: "Edit"){ (ac, view, success)in
+            //should be linked to edit menu
+            success(true)
+        }
         let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (ac, view, success) in
-            self.homeItem.remove(at: indexPath.row)
+            self.filteredItem.remove(at: indexPath.row)
             self.homeTableView.reloadData()
             success(true)
         }
+        editAction.backgroundColor = .orange
         deleteAction.backgroundColor = .red
-        return UISwipeActionsConfiguration(actions: [deleteAction])
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            filteredItem = homeItem
+            self.homeTableView.reloadData()
+        }else{
+            filteredItem = homeItem.filter{ $0.getName().lowercased().contains(searchText.lowercased())
+            }
+            self.homeTableView.reloadData()
+        }
     }
     func loadItems(){
         let Burger: Item = Item(idItem: "1", name: "Burger", type: "Food", quantity: 2, image: "camera", price: "20000", note: "This is your Burger", registDate: Date(timeIntervalSinceNow: 0), expiredDate: Date(timeIntervalSinceNow: 60*60*24*4))
@@ -74,9 +90,11 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         
         setupNavigationBarItem()
         loadItems()
+        filteredItem = homeItem
         homeTableView.reloadData()
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
+        self.homeSearchBar.delegate = self
         
         // Do any additional setup after loading the view.
     }
@@ -110,3 +128,4 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
      */
     
 }
+

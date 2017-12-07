@@ -20,7 +20,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         let Fish: Item = Item(idItem: "3", name: "Fish", type: "Food", quantity: 3, image: "camera", price: "40000", note: "This is your Fish", registDate: Date(timeIntervalSinceNow: 0), expiredDate: Date(timeIntervalSinceNow: 180))
         let Paprika: Item = Item(idItem: "4", name: "paprika", type: "Vegetable", quantity: 10, image: "camera", price: "50000", note: "This is your paprika", registDate: Date(timeIntervalSinceNow: 0), expiredDate: Date(timeIntervalSinceNow: 240))
         let Risole: Item = Item(idItem: "5", name: "Risole", type: "Food", quantity: 5, image: "camera", price: "60000", note: "This is your Risole", registDate: Date(timeIntervalSinceNow: 0), expiredDate: Date(timeIntervalSinceNow: 300))
-
+        
         var items: [Item] = []
         items.append(Burger)
         items.append(Spaghetti)
@@ -40,13 +40,13 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     
-    var selectedItem: UIImage!
+    var selectedImage: String = ""
     var nameLbl: String = ""
     var noteLbl: String = ""
     var quantityLbl: String = ""
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedItem = UIImage(named: discoverItem[indexPath.row].getImage())
+        selectedImage = discoverItem[indexPath.row].getImage()
         nameLbl = discoverItem[indexPath.row].getName()
         noteLbl = discoverItem[indexPath.row].getNote()
         quantityLbl = String(discoverItem[indexPath.row].getQuantity())
@@ -57,13 +57,12 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail"{
             let destination = segue.destination as! DetailDiscoverViewController
-            destination.detailImageView!.image = selectedItem!
-            destination.detailNameView.text = nameLbl
-            destination.detailNoteView.text = noteLbl
-            destination.detailQuantityView.text = quantityLbl
+            destination.image = selectedImage
+            destination.name = nameLbl
+            destination.note = noteLbl
+            destination.quantity = quantityLbl
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBarItem()
@@ -90,3 +89,4 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
     }
 }
+
