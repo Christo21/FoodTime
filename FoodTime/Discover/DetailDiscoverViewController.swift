@@ -15,6 +15,7 @@ class DetailDiscoverViewController: UIViewController {
     @IBOutlet weak var detailQuantityView: UILabel!
     @IBOutlet weak var detailNoteView: UILabel!
     
+    
     @IBOutlet weak var claimButton: UIButton!
     @IBAction func detailClaimButton(_ sender: UIButton) {
     }
