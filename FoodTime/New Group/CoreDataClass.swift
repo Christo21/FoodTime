@@ -25,7 +25,7 @@ class CoreDataClass  {
     var coreDataEntityName: String
     let dataEntity: NSEntityDescription?
     
-    func savePersistent() {
+    private func savePersistent() {
         do{
             try container.save()
             print("saving complete")
@@ -47,8 +47,11 @@ class CoreDataClass  {
             if let item = object as? Item{
                 saveData(pairData: ["name":item.getName(), "price":item.getPrice(), "note":item.getNote(), "type":item.getType(), "image":item.getImage(), "quantity":item.getQuantity(),  "registDate":item.getRegistDate(), "expiredDate":item.getExipredDate()])
             }
-        }else if object is Share{
-            ////
+        }else if object is User {
+            if let userObj = object as? User{
+                print("passworddd : \(userObj.getPassword())")
+                saveData(pairData: ["name":userObj.getName(),"id":userObj.getId(),"password":userObj.getPassword(),"address":userObj.getAddress()])
+            }
         }
     }
     
@@ -63,7 +66,7 @@ class CoreDataClass  {
         }
     }
     
-    func deleteData(key: String, value: Int) {
+    func deleteData(key: String, value: Int) -> Bool{
         let dataFetch = NSFetchRequest<NSFetchRequestResult>(entityName: coreDataEntityName)
         var isDeleted: Bool = false
         do{
@@ -83,10 +86,11 @@ class CoreDataClass  {
         }catch let error as NSError{
             print(error)
         }
-        if !isDeleted {print("no data is deleted with [key:\"\(key)\",value:\(value)]"); return}
+        if !isDeleted {print("no data is deleted with [key:\"\(key)\",value:\(value)]"); return false}
         savePersistent()
+        return true
     }
-    func deleteData(key: String, value: Date) {
+    func deleteData(key: String, value: Date) -> Bool {
         let dataFetch = NSFetchRequest<NSFetchRequestResult>(entityName: coreDataEntityName)
         var isDeleted: Bool = false
         do{
@@ -94,7 +98,7 @@ class CoreDataClass  {
             
             for data in dataArray {
                 if let dateData = data.value(forKey: key) as? Date {
-                    if dateData == value {
+                    if dateData.compare(value).hashValue == 0 {
                         container.delete(data)
                         isDeleted = true
                         print("1 item deleted, DATE process")
@@ -106,10 +110,11 @@ class CoreDataClass  {
         }catch let error as NSError{
             print(error)
         }
-        if !isDeleted {print("no data is deleted with [key:\"\(key)\",value:\(value)]"); return}
+        if !isDeleted {print("no data is deleted with [key:\"\(key)\",value:\(value)]"); return false}
         savePersistent()
+        return true
     }
-    func deleteData(key: String, value: String) {
+    func deleteData(key: String, value: String) -> Bool{
         let dataFetch = NSFetchRequest<NSFetchRequestResult>(entityName: coreDataEntityName)
         var isDeleted: Bool = false
         do{
@@ -118,7 +123,7 @@ class CoreDataClass  {
             for data in dataArray {
                 guard let unData = data.value(forKey: key) else{
                     print("error guarding")
-                    return
+                    return false
                 }
                 if String(describing: unData) == value {
                     container.delete(data)
@@ -131,8 +136,54 @@ class CoreDataClass  {
         }catch let error as NSError{
             print(error)
         }
-        if !isDeleted {print("no data is deleted with [key:\"\(key)\",value:\"\(value)\"]"); return}
+        if !isDeleted {print("no data is deleted with [key:\"\(key)\",value:\"\(value)\"]"); return false}
         savePersistent()
+        return true
+    }
+    
+    func updateData(object: AnyObject) -> Bool {
+        let dataFetch = NSFetchRequest<NSFetchRequestResult>(entityName: coreDataEntityName)
+        var isUpdated = false
+        do{
+            let dataArray: [NSManagedObject] = try container.fetch(dataFetch) as! [NSManagedObject]
+            if object is Item {
+                if let item = object as? Item{
+                    for data in dataArray {
+                        if let dateData = data.value(forKey: "registDate") as? Date {
+                            if dateData.compare(item.getRegistDate()).hashValue == 0 {
+                                container.delete(data)
+                                saveData(object: item)
+                                isUpdated = true
+                                print("1 ITEM is updated")
+                                break
+                            }
+                        }
+                    }
+                }
+            }else if object is User{
+                if let user = object as? User{
+                    for data in dataArray {
+                        if let idData = data.value(forKey: "id") {
+                            if String(describing: idData) == user.getId() {
+                                container.delete(data)
+                                savePersistent()
+                                saveData(object: user)
+                                isUpdated = true
+                                print("1 USER is updated")
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+        }catch let error as NSError{
+            print(error)
+        }
+        
+        if !isUpdated {print("no data is updated"); return false}
+        return true;
     }
     
 ////////////TEMP CODE///////
@@ -187,8 +238,8 @@ class CoreDataClass  {
 //        }
 //        savePersistent()
 //    }
-//////////////////////////////
-    
+///////////////////
+//  Delete all data stored in data core based on entity that is set in DataCoreClass object
     func clearData() {
         let dataFetch = NSFetchRequest<NSFetchRequestResult>(entityName: coreDataEntityName)
         var countDeleted = 0

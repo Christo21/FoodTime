@@ -65,11 +65,11 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         }
     }
     func loadItems(){
-        let Burger: Item = Item(idItem: "1", name: "Burger", type: "Food", quantity: 2, image: "camera", price: "20000", note: "This is your Burger", registDate: Date(timeIntervalSinceNow: 0), expiredDate: Date(timeIntervalSinceNow: 60*60*24*4))
-        let Spaghetti: Item = Item(idItem: "2", name: "Spaghetti", type: "Food", quantity: 1, image: "camera", price: "30000", note: "This is your Spaghetti", registDate: Date(timeIntervalSinceNow: 1), expiredDate: Date(timeIntervalSinceNow: 120))
-        let Fish: Item = Item(idItem: "3", name: "Fish", type: "Food", quantity: 3, image: "camera", price: "40000", note: "This is your Fish", registDate: Date(timeIntervalSinceNow: 2), expiredDate: Date(timeIntervalSinceNow: 180))
-        let Paprika: Item = Item(idItem: "4", name: "Paprika", type: "Vegetable", quantity: 10, image: "camera", price: "50000", note: "This is your paprika", registDate: Date(timeIntervalSinceNow: 3), expiredDate: Date(timeIntervalSinceNow: 240))
-        let Risole: Item = Item(idItem: "5", name: "Risole", type: "Food", quantity: 5, image: "camera", price: "60000", note: "This is your Risole", registDate: Date(timeIntervalSinceNow: 4), expiredDate: Date(timeIntervalSinceNow: 300))
+        let Burger: Item = Item(idItem: "1", name: "Burger", type: "Food", quantity: 2, image: "camera", price: 20000, note: "This is your Burger", registDate: Date(timeIntervalSinceNow: 0), expiredDate: Date(timeIntervalSinceNow: 60*60*24*4))
+        let Spaghetti: Item = Item(idItem: "2", name: "Spaghetti", type: "Food", quantity: 1, image: "camera", price: 30000, note: "This is your Spaghetti", registDate: Date(timeIntervalSinceNow: 1), expiredDate: Date(timeIntervalSinceNow: 120))
+        let Fish: Item = Item(idItem: "3", name: "Fish", type: "Food", quantity: 3, image: "camera", price: 40000, note: "This is your Fish", registDate: Date(timeIntervalSinceNow: 2), expiredDate: Date(timeIntervalSinceNow: 180))
+        let Paprika: Item = Item(idItem: "4", name: "Paprika", type: "Vegetable", quantity: 10, image: "camera", price: 50000, note: "This is your paprika", registDate: Date(timeIntervalSinceNow: 3), expiredDate: Date(timeIntervalSinceNow: 240))
+        let Risole: Item = Item(idItem: "5", name: "Risole", type: "Food", quantity: 5, image: "camera", price: 60000, note: "This is your Risole", registDate: Date(timeIntervalSinceNow: 0), expiredDate: Date(timeIntervalSinceNow: 300))
         
         var items: [Item] = []
         items.append(Burger)
@@ -82,7 +82,24 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         delegate?.scheduleNotification(Burger)
         delegate?.scheduleNotification(Spaghetti)
         let coreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
-        coreData.saveData(pairData: ["name":"toto"])
+        coreData.clearData()
+        coreData.saveData(object: Burger)
+        print(coreData.getData()[0].value(forKey: "name"))
+        coreData.updateData(object: Risole)
+        print(coreData.getData()[0].value(forKey: "name"))
+        coreData.deleteData(key: "registDate", value: Date(timeIntervalSinceNow: 0))
+        print(coreData.getData().count)
+        coreData.clearData()
+        
+        let coreDataUser: CoreDataClass = CoreDataClass(entity: "UserModel")
+        coreDataUser.clearData()
+        var usr = User(name: "alpian", password: "123", address: "cibi", id: "pian.com")
+        coreDataUser.saveData(object: usr)
+        print(coreDataUser.getData()[0].value(forKey: "password")!)
+        usr.setPassword(password: "321")
+        coreDataUser.updateData(object: usr)
+        print("re: \(coreDataUser.getData()[0].value(forKey: "password")!)")
+        print(coreDataUser.getData().count)
     }
     
     let delegate = UIApplication.shared.delegate as? AppDelegate

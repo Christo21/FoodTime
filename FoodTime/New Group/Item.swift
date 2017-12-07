@@ -14,12 +14,12 @@ class Item{
     var type: String
     var quantity: Int
     var image: String
-    var price: String
+    var price: Int
     var note: String
     var registDate: Date!
     var expiredDate: Date!
     
-    init(idItem: String, name: String, type: String, quantity: Int, image: String, price: String, note: String, registDate: Date, expiredDate: Date) {
+    init(idItem: String, name: String, type: String, quantity: Int, image: String, price: Int, note: String, registDate: Date, expiredDate: Date) {
         self.idItem = idItem
         self.name = name
         self.type = type
@@ -30,7 +30,7 @@ class Item{
         self.setRegistDate(registDate: registDate)
         self.setExpiredDate(expiredDate: expiredDate)
     }
-    init(idItem: String, name: String, type: String, quantity: Int, image: String, price: String, note: String, registDate: String, expiredDate: String) {
+    init(idItem: String, name: String, type: String, quantity: Int, image: String, price: Int, note: String, registDate: String, expiredDate: String) {
         self.idItem = idItem
         self.name = name
         self.type = type
@@ -69,7 +69,7 @@ class Item{
     func getImage() -> String {
         return image
     }
-    func getPrice() -> String {
+    func getPrice() -> Int {
         return price
     }
     func getNote() -> String {
@@ -98,7 +98,7 @@ class Item{
     func setImage(image: String) {
         self.image = image
     }
-    func setPrice(price: String) {
+    func setPrice(price: Int) {
         self.price = price
     }
     func setNote(note: String) {
