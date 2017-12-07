@@ -62,6 +62,11 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         items.append(Paprika)
         items.append(Risole)
         homeItem = items
+        
+        delegate?.scheduleNotification(Burger)
+        delegate?.scheduleNotification(Spaghetti)
+        let coreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
+        coreData.saveData(pairData: ["name":"toto"])
     }
     
     let delegate = UIApplication.shared.delegate as? AppDelegate
