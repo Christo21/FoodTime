@@ -21,6 +21,9 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     var imagePicker: UIImagePickerController!
     
+    var numberData: [Int] = []
+    var unitData: [String] = ["ons", "gram", "kg", "liter(s)", "piece(s)", "bottle(s)", "bag(s)", "can(s)", "jar(s)", "bundle(s)", "glass(es)"]
+    
     @IBAction func photoButtonDidTap(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePicker = UIImagePickerController()
@@ -32,15 +35,12 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
     }
     
-    var numberData: [Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100]
-    var unitData: [String] = ["ons", "gram", "kg", "liter(s)", "piece(s)", "bottle(s)", "bag(s)", "can(s)", "jar(s)", "bundle(s)", "glass(es)"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.nameField.delegate = self
-        
-        // Do any additional setup after loading the view, typically from a nib.
+        for i in 1...100 {
+            numberData.append(i)
+        }
         
         qtyPicker.dataSource = self
         qtyPicker.delegate = self
@@ -53,7 +53,17 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         notesView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         notesView.layer.cornerRadius = 8
         
+        setDate()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "save", style: .plain, target: self, action: #selector(saveItem))
+    }
+    
+    func setDate() {
+        let gregorian: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let currentDate: NSDate = NSDate()
+        let components: NSDateComponents = NSDateComponents()
+        let minDate: NSDate = gregorian.date(byAdding: components as DateComponents, to: currentDate as Date, options: NSCalendar.Options(rawValue: 0))! as NSDate
+        self.datePicker.minimumDate = minDate as Date
     }
     
     var alert = UIAlertController()
@@ -73,17 +83,48 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
         
     }
+    var placeholderLabel: UILabel!
     
     func validating() -> Bool{
-        if nameField.text == "" {
-            nameField.placeholder = "fill the corect name"
+        let name: String = nameField.text!
+        let price: String = priceField.text!
+        
+        var valid: Bool = true
+        
+        if name == "" {
+            nameField.text = nil
+            nameField.attributedPlaceholder = NSAttributedString(string:"fill the item name", attributes:[NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 0.75)])
+            valid = false
+        }
+        if name.count > 30{
+            nameField.text = nil
+            nameField.attributedPlaceholder = NSAttributedString(string:"max 30 characters",attributes:[NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 0.75)])
+            valid = false
+        }
+        if price == ""{
+            priceField.text = nil
+            priceField.attributedPlaceholder = NSAttributedString(string:"fill the price", attributes:[NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 0.75)])
+            valid = false
+        }
+        if photo.currentImage == nil{
+            valid = false
+        } else {
+            let imageData:NSData = UIImagePNGRepresentation(photo.currentImage!)! as NSData as NSData
+            let picture: String = imageData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+            print(picture)
+        }
+        
+        if !valid {
             return false
         } else {
             
         }
+        
         return true
+        
     }
     
+    //ngambil gambar
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         var choosenImage = UIImage()
         choosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -95,7 +136,6 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
             return numberData.count
@@ -104,7 +144,6 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
         return 0
     }
-    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
             return String(numberData[row])
@@ -113,12 +152,11 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
         return ""
     }
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //picker selected
+        
     }
     
-    //ngeluarin keyboard? lupa
+    
     override var canBecomeFirstResponder: Bool {
         return true
     }
