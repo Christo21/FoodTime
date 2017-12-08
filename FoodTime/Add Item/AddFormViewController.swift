@@ -10,7 +10,7 @@ import UIKit
 
 class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     
-    
+    var itemCoreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var priceField: UITextField!
@@ -88,6 +88,13 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func validating() -> Bool{
         let name: String = nameField.text!
         let price: String = priceField.text!
+        let qty: String = String(qtyPicker.selectedRow(inComponent: 0)) + String(qtyPicker.selectedRow(inComponent: 1))
+        var note: String = ""
+        
+        let image : UIImage = photo.backgroundImage(for: .normal)!
+        let imageData: NSData = UIImagePNGRepresentation(image)! as NSData
+        let picture: String = imageData.base64EncodedString(options: .lineLength64Characters)
+        
         
         var valid: Bool = true
         
@@ -113,11 +120,17 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             let picture: String = imageData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             print(picture)
         }
+        if notesView.text != nil{
+            note = notesView.text!
+        }
+        
         
         if !valid {
             return false
         } else {
+            let item = Item(name: name, quantity: Int(qty)!, image: picture, price: Int(price)!, note: note, registDate: Date(), expiredDate: datePicker.date)
             
+            itemCoreData.saveData(object: item)
         }
         
         return true
@@ -152,7 +165,9 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
         return ""
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         
     }
     
@@ -185,12 +200,12 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == self.notesView {
-            animation(y: -80)
+            animation(y: -100)
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == self.notesView {
-            animation(y: 80)
+            animation(y: 100)
         }
     }
     func animation(y: CGFloat) {

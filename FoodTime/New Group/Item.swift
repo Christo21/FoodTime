@@ -10,9 +10,7 @@ import Foundation
 import CoreData
 
 class Item{
-    var idItem: String
     var name: String
-    var type: String
     var quantity: Int
     var image: String
     var price: Int
@@ -20,10 +18,8 @@ class Item{
     var registDate: Date!
     var expiredDate: Date!
     
-    init(idItem: String, name: String, type: String, quantity: Int, image: String, price: Int, note: String, registDate: Date, expiredDate: Date) {
-        self.idItem = idItem
+    init(name: String, quantity: Int, image: String, price: Int, note: String, registDate: Date, expiredDate: Date) {
         self.name = name
-        self.type = type
         self.quantity = quantity
         self.image = image
         self.price = price
@@ -31,10 +27,8 @@ class Item{
         self.setRegistDate(registDate: registDate)
         self.setExpiredDate(expiredDate: expiredDate)
     }
-    init(idItem: String, name: String, type: String, quantity: Int, image: String, price: Int, note: String, registDate: String, expiredDate: String) {
-        self.idItem = idItem
+    init(name: String, quantity: Int, image: String, price: Int, note: String, registDate: String, expiredDate: String) {
         self.name = name
-        self.type = type
         self.quantity = quantity
         self.image = image
         self.price = price
@@ -43,9 +37,7 @@ class Item{
         self.setExpiredDate(expiredDate: expiredDate)
     }
     init(item: NSManagedObject) {
-        self.idItem = ""
         self.name = item.value(forKey: "name")! as! String
-        self.type = item.value(forKey: "type")! as! String
         self.quantity = item.value(forKey: "quantity")! as! Int
         self.image = item.value(forKey: "image")! as! String
         self.price = item.value(forKey: "price")! as! Int
@@ -66,14 +58,8 @@ class Item{
     }
     
     //getter
-    func getIdItem() -> String {
-        return idItem
-    }
     func getName() -> String {
         return name
-    }
-    func getType() -> String {
-        return type
     }
     func getQuantity() -> Int {
         return quantity
@@ -95,14 +81,8 @@ class Item{
     }
     
     //setter
-    func setIdItem(idItem: String) {
-        self.idItem = idItem
-    }
     func setName(name: String) {
         self.name = name
-    }
-    func setType(type: String) {
-        self.type = type
     }
     func setQuantity(quantity: Int) {
         self.quantity = quantity
