@@ -26,6 +26,10 @@
 	<false/>
 	<key>NSCameraUsageDescription</key>
 	<string>This app want to access your camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
+	<key>NSLocationUsageDescription</key>
+	<string></string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
