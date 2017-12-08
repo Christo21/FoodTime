@@ -15,6 +15,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     
     var homeItem:[Item] = []
     var filteredItem = [Item]()
+    var receivedItem = [Item]()
     var itemCoreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
     var userCoreData: CoreDataClass = CoreDataClass(entity: "UserModel")
     
@@ -25,8 +26,17 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = homeTableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! HomeTableViewCell
         
-        cell.detailImage.image? = UIImage(named: filteredItem[indexPath.row].getImage())!
-        cell.expiredDateOfImage.text = String(String(describing: filteredItem[indexPath.row].getExipredDate()).prefix(19))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
+        let newDate = dateFormatter.string(from: filteredItem[indexPath.row].getExipredDate())
+        
+        
+        let dataDecoded : Data = Data(base64Encoded: filteredItem[indexPath.row].getImage(), options: .ignoreUnknownCharacters)!
+        
+        cell.detailImage.image = UIImage(data: dataDecoded as Data)!
+        
+        cell.expiredDateOfImage.text = newDate
         cell.imageName.text = filteredItem[indexPath.row].getName()
         cell.noteOfImage.text = filteredItem[indexPath.row].getNote()
         
@@ -66,24 +76,26 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             self.homeTableView.reloadData()
         }
     }
-    func loadItems(){
-        let Burger: Item = Item(name: "Burger", quantity: 2, image: "camera", price: 20000, note: "This is your Burger", registDate: Date(timeIntervalSinceNow: 0), expiredDate: Date(timeIntervalSinceNow: 60*60*24*4))
-        
-        var items: [Item] = []
-        items.append(Burger)
-//        homeItem = items
-        
-        
-        
+    func reload() {
+        let dataStored = itemCoreData.getData()
         let dataStoredCount = itemCoreData.getData().count
-        for itemStored in itemCoreData.getData() {
+        
+        if dataStoredCount > filteredItem.count {
+            homeItem.append(Item(item: dataStored[dataStoredCount-1]))
+        }
+    }
+    func loadItems(){
+        let dataStored = itemCoreData.getData()
+        let dataStoredCount = dataStored.count
+        
+        for itemStored in dataStored{
             homeItem.append(Item(item: itemStored))
         }
         
         let dataTempCount = homeItem.count
         print("stored: \(dataStoredCount) | temp: \(dataTempCount)")
         
-        delegate?.scheduleNotification(Burger)
+        //delegate?.scheduleNotification(Burger)
 //        let coreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
 //        coreData.clearData()
 //        coreData.saveData(object: Burger)
@@ -135,9 +147,14 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     
     @objc func addTapped(sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "addItem", sender: nil)
+        
     }
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        reload()
+        filteredItem = homeItem
+        homeTableView.reloadData()
+    }
     
     /*
      // MARK: - Navigation
@@ -150,4 +167,5 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
      */
     
 }
+
 

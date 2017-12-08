@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24D324E15A579939E8062955 /* Pods_FoodTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB6E1C35F33766E3442579E /* Pods_FoodTime.framework */; };
+		6805366A1FDA3C8000CF52D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680536691FDA3C8000CF52D0 /* GoogleService-Info.plist */; };
 		6B653FB71FD7A06D00501D13 /* CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */; };
 		F30B373D1FD6A2C800F94768 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B373C1FD6A2C800F94768 /* Share.swift */; };
 		F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */; };
@@ -27,12 +28,12 @@
 		F3BFC29D1FCD339E00062C00 /* FoodTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3BFC29B1FCD339E00062C00 /* FoodTime.xcdatamodeld */; };
 		F3BFC29F1FCD339E00062C00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC29E1FCD339E00062C00 /* Assets.xcassets */; };
 		F3BFC2A21FCD339E00062C00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC2A01FCD339E00062C00 /* LaunchScreen.storyboard */; };
-		F3E5447A1FDA23E000383214 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3E544791FDA23DF00383214 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0AB6E1C35F33766E3442579E /* Pods_FoodTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6729D159CA2A2193F66E116C /* Pods-FoodTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.debug.xcconfig"; sourceTree = "<group>"; };
+		680536691FDA3C8000CF52D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClass.swift; sourceTree = "<group>"; };
 		91B5D6D4C73854A460746221 /* Pods-FoodTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.release.xcconfig"; sourceTree = "<group>"; };
 		F30B373C1FD6A2C800F94768 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		F3BFC29E1FCD339E00062C00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3BFC2A11FCD339E00062C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3BFC2A31FCD339E00062C00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F3E544791FDA23DF00383214 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +152,7 @@
 		F3BFC2881FCD339E00062C00 = {
 			isa = PBXGroup;
 			children = (
-				F3E544791FDA23DF00383214 /* GoogleService-Info.plist */,
+				680536691FDA3C8000CF52D0 /* GoogleService-Info.plist */,
 				F3BFC2931FCD339E00062C00 /* FoodTime */,
 				F3BFC2921FCD339E00062C00 /* Products */,
 				B275CB3DCC370A19C7F2FBB8 /* Pods */,
@@ -253,7 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3BFC2A21FCD339E00062C00 /* LaunchScreen.storyboard in Resources */,
-				F3E5447A1FDA23E000383214 /* GoogleService-Info.plist in Resources */,
+				6805366A1FDA3C8000CF52D0 /* GoogleService-Info.plist in Resources */,
 				F3BFC29F1FCD339E00062C00 /* Assets.xcassets in Resources */,
 				F3BFC29A1FCD339E00062C00 /* Main.storyboard in Resources */,
 			);
@@ -264,7 +264,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		4BF8B0D22B808C204163707F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -283,7 +283,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;

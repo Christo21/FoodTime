@@ -55,7 +55,6 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
         setDate()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "save", style: .plain, target: self, action: #selector(saveItem))
     }
     
     func setDate() {
@@ -67,13 +66,22 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     var alert = UIAlertController()
-    @objc func saveItem(sender: UIBarButtonItem){
+    
+//    @IBAction func savingItem(segue:UIStoryboardSegue) {
+//        if segue.identifier == "savingItem"{
+//            let list = segue.source as? MyListViewController
+//            list?.loadItems()
+//        }
+//    }
+    
+    @IBAction func saving(_ sender: UIBarButtonItem) {
         if validating() {
-            let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Successfull", message: "Your item has added to your list", preferredStyle: UIAlertControllerStyle.alert)
             
             // add an action (button)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
-                _ = self.navigationController?.popToRootViewController(animated: false)
+                               _ = self.navigationController?.popToRootViewController(animated: false)
+                
             }))
             
             // show the alert
@@ -81,8 +89,10 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         } else {
             
         }
-        
     }
+    
+    
+    
     var placeholderLabel: UILabel!
     
     func validating() -> Bool{
@@ -90,11 +100,7 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         let price: String = priceField.text!
         let qty: String = String(qtyPicker.selectedRow(inComponent: 0)) + String(qtyPicker.selectedRow(inComponent: 1))
         var note: String = ""
-        
-        let image : UIImage = photo.backgroundImage(for: .normal)!
-        let imageData: NSData = UIImagePNGRepresentation(image)! as NSData
-        let picture: String = imageData.base64EncodedString(options: .lineLength64Characters)
-        
+        var picture: String = ""
         
         var valid: Bool = true
         
@@ -117,13 +123,11 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             valid = false
         } else {
             let imageData:NSData = UIImagePNGRepresentation(photo.currentImage!)! as NSData as NSData
-            let picture: String = imageData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-            print(picture)
+            picture = imageData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         }
         if notesView.text != nil{
             note = notesView.text!
         }
-        
         
         if !valid {
             return false
@@ -132,7 +136,6 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             
             itemCoreData.saveData(object: item)
         }
-        
         return true
         
     }
