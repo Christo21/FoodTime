@@ -45,7 +45,7 @@ class CoreDataClass  {
     func saveData(object: AnyObject) {
         if object is Item {
             if let item = object as? Item{
-                saveData(pairData: ["name":item.getName(), "price":item.getPrice(), "note":item.getNote(), "type":item.getType(), "image":item.getImage(), "quantity":item.getQuantity(),  "registDate":item.getRegistDate(), "expiredDate":item.getExipredDate()])
+                saveData(pairData: ["name":item.getName(), "price":item.getPrice(), "note":item.getNote(), "image":item.getImage(), "quantity":item.getQuantity(),  "registDate":item.getRegistDate(), "expiredDate":item.getExipredDate()])
             }
         }else if object is User {
             if let userObj = object as? User{
