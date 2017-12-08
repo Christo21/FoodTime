@@ -134,7 +134,7 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         if !valid {
             return false
         } else {
-            let item = Item(name: name, quantity: Int(qty)!, image: picture, price: Int(price)!, note: note, registDate: Date(), expiredDate: Date(timeIntervalSinceNow: 60)) //JANGAN LUPA GANTI EXP DATE
+            let item = Item(name: name, quantity: Int(qty)!, image: picture, price: Int(price)!, note: note, registDate: Date(), expiredDate: datePicker.date) //JANGAN LUPA GANTI EXP DATE
             
             delegate?.scheduleNotification(item)
             

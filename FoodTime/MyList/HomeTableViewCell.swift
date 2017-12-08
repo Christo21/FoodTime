@@ -14,7 +14,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var expiredDateOfImage: UILabel!
     @IBOutlet weak var imageName: UILabel!
     @IBOutlet weak var detailImage: UIImageView!
-    
+    @IBOutlet weak var indicator: UILabel!
     
     
     override func awakeFromNib() {

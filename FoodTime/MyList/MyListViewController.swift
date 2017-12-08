@@ -40,7 +40,32 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         cell.imageName.text = filteredItem[indexPath.row].getName()
         cell.noteOfImage.text = filteredItem[indexPath.row].getNote()
         
+        cell.indicator.textColor = colorOfIndicator(item: filteredItem[indexPath.row])
+        
         return cell
+    }
+    
+    //menentukan warna indikator
+    func colorOfIndicator(item: Item) -> UIColor {
+        let calendar = NSCalendar.current
+        let date1 = calendar.startOfDay(for: item.getRegistDate())
+        let date2 = calendar.startOfDay(for: item.getExipredDate())
+        let dateNow = Date()
+        
+        //print("DEBUG INDICATOR || date1 : \(date1), date 2 : \(date2), now : \(dateNow)")
+        
+        let minute: Double = Double(calendar.dateComponents([.second], from: date1, to: date2).second!)
+        let now: Double = Double(calendar.dateComponents([.second], from: dateNow, to: date2).second!)
+        
+        //print("\(minute) \(now)")
+        
+        if now > minute * 0.7 {
+            return #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        } else if now > minute * 0.3 {
+            return #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        } else {
+            return #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        }
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -58,7 +83,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             success(true)
         }
         let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (ac, view, success) in
-            print("sebelum dihapus \(self.filteredItem[indexPath.row].getRegistDate())")
+            //print("sebelum dihapus \(self.filteredItem[indexPath.row].getRegistDate())")
             self.itemCoreData.deleteData(key: "registDate", value: self.filteredItem[indexPath.row].getRegistDate())
             self.filteredItem.remove(at: indexPath.row)
             self.homeItem.remove(at: indexPath.row)
@@ -83,26 +108,58 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         let dataStored = itemCoreData.getData()
         let dataStoredCount = itemCoreData.getData().count
         
-        
         if dataStoredCount > homeItem.count && homeItem.count == filteredItem.count{
-            homeItem.append(Item(item: dataStored[dataStoredCount-1]))
+            let newItem = dataStored[dataStoredCount - 1]
+            let newItemDate = newItem.value(forKey: "expiredDate") as! Date
+            
+            
+            //masukin data sesuai urutan
+            if dataStoredCount > 1 {
+                for index in 0...homeItem.count{
+                    if index == homeItem.count - 1{
+                        homeItem.append(Item(item: newItem))
+                        break
+                    }
+                    let oldItem = homeItem[index].getExipredDate()
+                    let afterOldItem = homeItem[index+1].getExipredDate()
+                    
+                        let dateNow = Date()
+                        let calendar = NSCalendar.current
+                        let newItemInDay: Int = Int(calendar.dateComponents([.day], from: dateNow, to: newItemDate).day!)
+                        let oldItemInDay: Int = Int(calendar.dateComponents([.day], from: dateNow, to: oldItem).day!)
+                        let afterOldItemInDay: Int = Int(calendar.dateComponents([.day], from: dateNow, to: afterOldItem).day!)
+                    
+                        //print("DEBUG INSERT ITEM || new: \(newItemInDay) old: \(oldItemInDay) after: \(afterOldItemInDay)")
+                        if newItemInDay > oldItemInDay && newItemInDay <= afterOldItemInDay{
+                            homeItem.insert(Item(item: newItem), at: index + 1)
+                            break
+                        } else if newItemInDay < oldItemInDay && newItemInDay <= afterOldItemInDay{
+                            homeItem.insert(Item(item: newItem), at: index)
+                            break
+                        }
+                }
+            } else {
+                homeItem.append(Item(item: newItem))
+            }
         }
     }
     func sorterForFileIDASC(this:Item, that:Item) -> Bool {
         return this.getExipredDate() < that.getExipredDate()
     }
+    
     func loadItems(){
         let dataStored = itemCoreData.getData()
         let dataStoredCount = dataStored.count
         
         for itemStored in dataStored{
-            print("yg di list \(itemStored.value(forKey: "registDate"))")
+           // print("yg ada di list \(itemStored.value(forKey: "registDate"))")
             homeItem.append(Item(item: itemStored))
         }
+        
         homeItem.sort(by: sorterForFileIDASC(this:that:))
         
         let dataTempCount = homeItem.count
-        print("stored: \(dataStoredCount) | temp: \(dataTempCount)")
+        //print("stored: \(dataStoredCount) | temp: \(dataTempCount)")
         
 //        let coreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
 //        coreData.clearData()

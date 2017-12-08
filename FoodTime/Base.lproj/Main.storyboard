@@ -99,6 +99,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="●" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhM-LN-ROj">
+                                                    <rect key="frame" x="350" y="11" width="15" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="G9Q-mc-cu1" firstAttribute="leading" secondItem="WDv-aN-wBr" secondAttribute="trailing" constant="20" id="3gk-qM-I5d"/>
@@ -124,6 +131,7 @@
                                             <outlet property="detailImage" destination="WDv-aN-wBr" id="URw-FR-Uxb"/>
                                             <outlet property="expiredDateOfImage" destination="rSC-LF-chX" id="ro1-yS-YNV"/>
                                             <outlet property="imageName" destination="kC7-KJ-50X" id="HFk-b8-xzg"/>
+                                            <outlet property="indicator" destination="MhM-LN-ROj" id="9Ry-au-en5"/>
                                             <outlet property="noteOfImage" destination="G9Q-mc-cu1" id="iB9-cH-9oW"/>
                                         </connections>
                                     </tableViewCell>
