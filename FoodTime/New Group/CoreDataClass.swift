@@ -98,7 +98,9 @@ class CoreDataClass  {
             
             for data in dataArray {
                 if let dateData = data.value(forKey: key) as? Date {
-                    if dateData.compare(value).hashValue == 0 {
+                    print("data left in DB : \(dateData)")
+                    if dateData == value {
+                        print(data.value(forKey: "registDate"))
                         container.delete(data)
                         isDeleted = true
                         print("1 item deleted, DATE process")

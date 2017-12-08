@@ -58,7 +58,10 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             success(true)
         }
         let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (ac, view, success) in
+            print("sebelum dihapus \(self.filteredItem[indexPath.row].getRegistDate())")
+            self.itemCoreData.deleteData(key: "registDate", value: self.filteredItem[indexPath.row].getRegistDate())
             self.filteredItem.remove(at: indexPath.row)
+            self.homeItem.remove(at: indexPath.row)
             self.homeTableView.reloadData()
             success(true)
         }
@@ -80,22 +83,27 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         let dataStored = itemCoreData.getData()
         let dataStoredCount = itemCoreData.getData().count
         
-        if dataStoredCount > filteredItem.count {
+        
+        if dataStoredCount > homeItem.count && homeItem.count == filteredItem.count{
             homeItem.append(Item(item: dataStored[dataStoredCount-1]))
         }
+    }
+    func sorterForFileIDASC(this:Item, that:Item) -> Bool {
+        return this.getExipredDate() < that.getExipredDate()
     }
     func loadItems(){
         let dataStored = itemCoreData.getData()
         let dataStoredCount = dataStored.count
         
         for itemStored in dataStored{
+            print("yg di list \(itemStored.value(forKey: "registDate"))")
             homeItem.append(Item(item: itemStored))
         }
+        homeItem.sort(by: sorterForFileIDASC(this:that:))
         
         let dataTempCount = homeItem.count
         print("stored: \(dataStoredCount) | temp: \(dataTempCount)")
         
-        //delegate?.scheduleNotification(Burger)
 //        let coreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
 //        coreData.clearData()
 //        coreData.saveData(object: Burger)

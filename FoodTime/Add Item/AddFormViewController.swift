@@ -10,6 +10,8 @@ import UIKit
 
 class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     
+    let delegate = UIApplication.shared.delegate as? AppDelegate
+    
     var itemCoreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
     
     @IBOutlet weak var nameField: UITextField!
@@ -132,8 +134,11 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         if !valid {
             return false
         } else {
-            let item = Item(name: name, quantity: Int(qty)!, image: picture, price: Int(price)!, note: note, registDate: Date(), expiredDate: datePicker.date)
+            let item = Item(name: name, quantity: Int(qty)!, image: picture, price: Int(price)!, note: note, registDate: Date(), expiredDate: Date(timeIntervalSinceNow: 60)) //JANGAN LUPA GANTI EXP DATE
             
+            delegate?.scheduleNotification(item)
+            
+            print("item yang disimpan \(item.getName()) \(item.getExipredDate()) \(item.getRegistDate())")
             itemCoreData.saveData(object: item)
         }
         return true
