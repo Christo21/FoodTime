@@ -187,8 +187,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let notificationIdentifier = response.notification.request.identifier
         let buttonIdentifier = response.actionIdentifier
         let request = response.notification.request
-        var coreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
-        print("Core Data counted: \(coreData.getData().count)")
+        let coreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
         
         switch buttonIdentifier {
         case "remindLater":

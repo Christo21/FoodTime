@@ -166,7 +166,6 @@ class CoreDataClass  {
                         if let idData = data.value(forKey: "id") {
                             if String(describing: idData) == user.getId() {
                                 container.delete(data)
-                                savePersistent()
                                 saveData(object: user)
                                 isUpdated = true
                                 print("1 USER is updated")

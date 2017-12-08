@@ -15,6 +15,8 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     
     var homeItem:[Item] = []
     var filteredItem = [Item]()
+    var itemCoreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
+    var userCoreData: CoreDataClass = CoreDataClass(entity: "UserModel")
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredItem.count
@@ -77,29 +79,40 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         items.append(Fish)
         items.append(Paprika)
         items.append(Risole)
-        homeItem = items
+//        homeItem = items
+        
+        itemCoreData.saveData(object: Burger)
+        itemCoreData.saveData(object: Spaghetti)
+        
+        var dataStoredCount = itemCoreData.getData().count
+        for itemStored in itemCoreData.getData() {
+            homeItem.append(Item(item: itemStored))
+        }
+        
+        var dataTempCount = homeItem.count
+        print("stored: \(dataStoredCount) | temp: \(dataTempCount)")
         
         delegate?.scheduleNotification(Burger)
         delegate?.scheduleNotification(Spaghetti)
-        let coreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
-        coreData.clearData()
-        coreData.saveData(object: Burger)
-        print(coreData.getData()[0].value(forKey: "name"))
-        coreData.updateData(object: Risole)
-        print(coreData.getData()[0].value(forKey: "name"))
-        coreData.deleteData(key: "registDate", value: Date(timeIntervalSinceNow: 0))
-        print(coreData.getData().count)
-        coreData.clearData()
-        
-        let coreDataUser: CoreDataClass = CoreDataClass(entity: "UserModel")
-        coreDataUser.clearData()
-        var usr = User(name: "alpian", password: "123", address: "cibi", id: "pian.com")
-        coreDataUser.saveData(object: usr)
-        print(coreDataUser.getData()[0].value(forKey: "password")!)
-        usr.setPassword(password: "321")
-        coreDataUser.updateData(object: usr)
-        print("re: \(coreDataUser.getData()[0].value(forKey: "password")!)")
-        print(coreDataUser.getData().count)
+//        let coreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
+//        coreData.clearData()
+//        coreData.saveData(object: Burger)
+//        print(coreData.getData()[0].value(forKey: "name"))
+//        coreData.updateData(object: Risole)
+//        print(coreData.getData()[0].value(forKey: "name"))
+//        coreData.deleteData(key: "registDate", value: Date(timeIntervalSinceNow: 0))
+//        print(coreData.getData().count)
+//        coreData.clearData()
+//
+//        let coreDataUser: CoreDataClass = CoreDataClass(entity: "UserModel")
+//        coreDataUser.clearData()
+//        var usr = User(name: "alpian", password: "123", address: "cibi", id: "pian.com")
+//        coreDataUser.saveData(object: usr)
+//        print(coreDataUser.getData()[0].value(forKey: "password")!)
+//        usr.setPassword(password: "321")
+//        coreDataUser.updateData(object: usr)
+//        print("re: \(coreDataUser.getData()[0].value(forKey: "password")!)")
+//        print(coreDataUser.getData().count)
     }
     
     let delegate = UIApplication.shared.delegate as? AppDelegate

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class Item{
     var idItem: String
@@ -40,6 +41,17 @@ class Item{
         self.note = note
         self.setRegistDate(registDate: registDate)
         self.setExpiredDate(expiredDate: expiredDate)
+    }
+    init(item: NSManagedObject) {
+        self.idItem = ""
+        self.name = item.value(forKey: "name")! as! String
+        self.type = item.value(forKey: "type")! as! String
+        self.quantity = item.value(forKey: "quantity")! as! Int
+        self.image = item.value(forKey: "image")! as! String
+        self.price = item.value(forKey: "price")! as! Int
+        self.note = item.value(forKey: "note")! as! String
+        self.setRegistDate(registDate: item.value(forKey: "registDate") as! Date)
+        self.setExpiredDate(expiredDate: item.value(forKey: "expiredDate") as! Date)
     }
     
     private func stringToDate(dt: String) -> Date {
