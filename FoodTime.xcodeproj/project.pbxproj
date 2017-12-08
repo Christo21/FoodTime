@@ -28,7 +28,6 @@
 		F3BFC29D1FCD339E00062C00 /* FoodTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3BFC29B1FCD339E00062C00 /* FoodTime.xcdatamodeld */; };
 		F3BFC29F1FCD339E00062C00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC29E1FCD339E00062C00 /* Assets.xcassets */; };
 		F3BFC2A21FCD339E00062C00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC2A01FCD339E00062C00 /* LaunchScreen.storyboard */; };
-		F3E5447A1FDA23E000383214 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3E544791FDA23DF00383214 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +56,6 @@
 		F3BFC29E1FCD339E00062C00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3BFC2A11FCD339E00062C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3BFC2A31FCD339E00062C00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F3E544791FDA23DF00383214 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,7 +264,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		4BF8B0D22B808C204163707F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -285,7 +283,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
