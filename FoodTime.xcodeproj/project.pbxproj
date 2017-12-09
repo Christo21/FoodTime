@@ -32,6 +32,7 @@
 		F3BFC29D1FCD339E00062C00 /* FoodTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3BFC29B1FCD339E00062C00 /* FoodTime.xcdatamodeld */; };
 		F3BFC29F1FCD339E00062C00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC29E1FCD339E00062C00 /* Assets.xcassets */; };
 		F3BFC2A21FCD339E00062C00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BFC2A01FCD339E00062C00 /* LaunchScreen.storyboard */; };
+		F3E544801FDA96A100383214 /* ShareFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E5447F1FDA96A100383214 /* ShareFormViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		F3BFC29E1FCD339E00062C00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3BFC2A11FCD339E00062C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3BFC2A31FCD339E00062C00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3E5447F1FDA96A100383214 /* ShareFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareFormViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 		F3BFC2931FCD339E00062C00 /* FoodTime */ = {
 			isa = PBXGroup;
 			children = (
+				F3E5447E1FDA967500383214 /* Share */,
 				F3720B4E1FD64973008E9CF3 /* Add Item */,
 				F324D63F1FD548A50093172F /* Profile */,
 				F324D6381FD53AA40093172F /* Discover */,
@@ -200,6 +203,14 @@
 				F3BFC29B1FCD339E00062C00 /* FoodTime.xcdatamodeld */,
 			);
 			path = FoodTime;
+			sourceTree = "<group>";
+		};
+		F3E5447E1FDA967500383214 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				F3E5447F1FDA96A100383214 /* ShareFormViewController.swift */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,6 +359,7 @@
 				F324D6311FD52EE80093172F /* MyListViewController.swift in Sources */,
 				68CAA69A1FDB83BB00D288A2 /* LoadingIndicatorView.swift in Sources */,
 				F3BFC2951FCD339E00062C00 /* AppDelegate.swift in Sources */,
+				F3E544801FDA96A100383214 /* ShareFormViewController.swift in Sources */,
 				F324D6331FD52F120093172F /* Item.swift in Sources */,
 				680BE3F11FDBA9680067A5A2 /* itemDataList.swift in Sources */,
 				680BE3EF1FDBA5390067A5A2 /* AddViewCell.swift in Sources */,

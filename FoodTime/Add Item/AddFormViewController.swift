@@ -62,7 +62,6 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             imagePicker.allowsEditing = false
             self.present(imagePicker, animated: true, completion: nil)
         }
-        
     }
     
     override func viewDidLoad() {
