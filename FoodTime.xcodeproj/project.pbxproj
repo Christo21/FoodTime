@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24D324E15A579939E8062955 /* Pods_FoodTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB6E1C35F33766E3442579E /* Pods_FoodTime.framework */; };
+		68CAA69A1FDB83BB00D288A2 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAA6991FDB83BB00D288A2 /* LoadingIndicatorView.swift */; };
 		6B3F754F1FDA8A6700D16E86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B3F754E1FDA8A6600D16E86 /* GoogleService-Info.plist */; };
 		6B653FB71FD7A06D00501D13 /* CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */; };
 		F30B373D1FD6A2C800F94768 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B373C1FD6A2C800F94768 /* Share.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		0AB6E1C35F33766E3442579E /* Pods_FoodTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6729D159CA2A2193F66E116C /* Pods-FoodTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.debug.xcconfig"; sourceTree = "<group>"; };
+		68CAA6991FDB83BB00D288A2 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		6B3F754E1FDA8A6600D16E86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClass.swift; sourceTree = "<group>"; };
 		91B5D6D4C73854A460746221 /* Pods-FoodTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.release.xcconfig"; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				F30B373C1FD6A2C800F94768 /* Share.swift */,
 				F324D6341FD52F340093172F /* User.swift */,
 				6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */,
+				68CAA6991FDB83BB00D288A2 /* LoadingIndicatorView.swift */,
 			);
 			name = Class;
 			path = "New Group";
@@ -333,6 +336,7 @@
 				F3BFC29D1FCD339E00062C00 /* FoodTime.xcdatamodeld in Sources */,
 				F3BFC2971FCD339E00062C00 /* ViewController.swift in Sources */,
 				F324D6311FD52EE80093172F /* MyListViewController.swift in Sources */,
+				68CAA69A1FDB83BB00D288A2 /* LoadingIndicatorView.swift in Sources */,
 				F3BFC2951FCD339E00062C00 /* AppDelegate.swift in Sources */,
 				F324D6331FD52F120093172F /* Item.swift in Sources */,
 				6B653FB71FD7A06D00501D13 /* CoreDataClass.swift in Sources */,

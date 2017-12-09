@@ -22,9 +22,10 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var photo: UIButton!
     
     var imagePicker: UIImagePickerController!
-    
     var numberData: [Int] = []
     var unitData: [String] = ["ons", "gram", "kg", "liter(s)", "piece(s)", "bottle(s)", "bag(s)", "can(s)", "jar(s)", "bundle(s)", "glass(es)"]
+    var placeholderLabel: UILabel!
+    
     
     @IBAction func photoButtonDidTap(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -44,6 +45,7 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             numberData.append(i)
         }
         
+        
         qtyPicker.dataSource = self
         qtyPicker.delegate = self
         
@@ -59,6 +61,14 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
     }
     
+    func beginLoading() {
+        
+    }
+    func endLoading() {
+        
+    }
+    
+    //setting date style
     func setDate() {
         let gregorian: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
         let currentDate: NSDate = NSDate()
@@ -67,35 +77,20 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         self.datePicker.minimumDate = minDate as Date
     }
     
-    var alert = UIAlertController()
-    
-//    @IBAction func savingItem(segue:UIStoryboardSegue) {
-//        if segue.identifier == "savingItem"{
-//            let list = segue.source as? MyListViewController
-//            list?.loadItems()
-//        }
-//    }
-    
     @IBAction func saving(_ sender: UIBarButtonItem) {
-        if validating() {
-            let alert = UIAlertController(title: "Successfull", message: "Your item has added to your list", preferredStyle: UIAlertControllerStyle.alert)
-            
-            // add an action (button)
+        let alert: UIAlertController!
+        
+        if self.validating() {
+            alert = UIAlertController(title: "Successfull", message: "Your item has added to your list", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
-                               _ = self.navigationController?.popToRootViewController(animated: false)
-                
+                _ = self.navigationController?.popToRootViewController(animated: false)
             }))
-            
-            // show the alert
-            self.present(alert, animated: true, completion: nil)
         } else {
-            
+            alert = UIAlertController(title: "Warning", message: "Fill the item name or price or picture", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in }))
         }
+        self.present(alert, animated: true, completion: nil)
     }
-    
-    
-    
-    var placeholderLabel: UILabel!
     
     func validating() -> Bool{
         let name: String = nameField.text!
@@ -121,8 +116,11 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             priceField.attributedPlaceholder = NSAttributedString(string:"fill the price", attributes:[NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 0.75)])
             valid = false
         }
-        if photo.currentImage == nil{
+        if photo.currentImage == #imageLiteral(resourceName: "camera") && valid{
             valid = false
+            let alert = UIAlertController(title: "Warning", message: "Please take your item's picture", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in }))
+            self.present(alert, animated: true, completion: nil)
         } else {
             let imageData:NSData = UIImagePNGRepresentation(photo.currentImage!)! as NSData as NSData
             picture = imageData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
@@ -174,11 +172,6 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         return ""
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        
-    }
-    
     
     override var canBecomeFirstResponder: Bool {
         return true
@@ -195,7 +188,7 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         return false
     }
     
-    
+    //buat naikin layar pas mau ngetik
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == self.priceField {
             animation(y: -80)
@@ -216,6 +209,7 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             animation(y: 100)
         }
     }
+    
     func animation(y: CGFloat) {
         UIView .beginAnimations(nil, context: nil)
         UIView .setAnimationDelegate(self)
@@ -224,9 +218,27 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         self.view.frame = CGRect(x: self.view.frame.origin.x, y: (self.view.frame.origin.y + y), width: self.view.frame.size.width, height: self.view.frame.size.height)
         UIView .commitAnimations()
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    class func displaySpinner(onView : UIView) -> UIView {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        return spinnerView
     }
+    
+    class func removeSpinner(spinner :UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
+        }
+    }
+    
 }
 

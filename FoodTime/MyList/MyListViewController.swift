@@ -19,6 +19,29 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     var itemCoreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
     var userCoreData: CoreDataClass = CoreDataClass(entity: "UserModel")
     
+    let delegate = UIApplication.shared.delegate as? AppDelegate
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupNavigationBarItem()
+        loadItems()
+        filteredItem = homeItem
+        homeTableView.reloadData()
+        self.homeTableView.delegate = self
+        self.homeTableView.dataSource = self
+        self.homeSearchBar.delegate = self
+
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        reload()
+        filteredItem = homeItem
+        homeTableView.reloadData()
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredItem.count
     }
@@ -94,6 +117,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         deleteAction.backgroundColor = .red
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             filteredItem = homeItem
@@ -104,6 +128,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             self.homeTableView.reloadData()
         }
     }
+    
     func reload() {
         let dataStored = itemCoreData.getData()
         let dataStoredCount = itemCoreData.getData().count
@@ -143,6 +168,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             }
         }
     }
+    
     func sorterForFileIDASC(this:Item, that:Item) -> Bool {
         return this.getExipredDate() < that.getExipredDate()
     }
@@ -182,26 +208,6 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
 //        print(coreDataUser.getData().count)
     }
     
-    let delegate = UIApplication.shared.delegate as? AppDelegate
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupNavigationBarItem()
-        loadItems()
-        filteredItem = homeItem
-        homeTableView.reloadData()
-        self.homeTableView.delegate = self
-        self.homeTableView.dataSource = self
-        self.homeSearchBar.delegate = self
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     public func setupNavigationBarItem(){
         //kiri
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"mail"), style: .plain, target: self, action: #selector(addTapped))
@@ -214,22 +220,6 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         self.performSegue(withIdentifier: "addItem", sender: nil)
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        
-        reload()
-        filteredItem = homeItem
-        homeTableView.reloadData()
-    }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 
