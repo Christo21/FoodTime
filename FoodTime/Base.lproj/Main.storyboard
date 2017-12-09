@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XKh-9I-cOi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gt0-1q-m1K">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -852,7 +852,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoe-sq-nYt">
                                 <rect key="frame" x="230" y="614" width="64" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign up"/>
+                                <state key="normal" title="Sign up">
+                                    <color key="titleColor" red="0.31979024410247803" green="0.58787339925765991" blue="0.83535230159759521" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
                                     <action selector="buttonSignUpBawah:" destination="y6Q-r0-Rih" eventType="touchUpInside" id="UtZ-Hi-LKh"/>
                                 </connections>
@@ -878,7 +880,9 @@
                                 <rect key="frame" x="206" y="370" width="112" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Forgot Password?"/>
+                                <state key="normal" title="Forgot Password?">
+                                    <color key="titleColor" red="0.31979024410247803" green="0.58787339925765991" blue="0.83535230159759521" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsm-js-i2W">
                                 <rect key="frame" x="53" y="429" width="72" height="1"/>
@@ -1289,7 +1293,7 @@
                     <connections>
                         <outlet property="searchBar" destination="3dc-e6-N52" id="Xsh-bk-Ako"/>
                         <outlet property="tableView" destination="yx8-lM-TFz" id="C3T-vB-eP9"/>
-                        <segue destination="A7X-gh-zWr" kind="show" id="4PH-QT-XEi">
+                        <segue destination="A7X-gh-zWr" kind="show" identifier="" id="4PH-QT-XEi">
                             <nil key="action"/>
                         </segue>
                     </connections>
@@ -1397,7 +1401,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efW-M4-5SO">
                                 <rect key="frame" x="231" y="608" width="38" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.31979024410247803" green="0.58787339925765991" blue="0.83535230159759521" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oh-Te-wsW">
                                 <rect key="frame" x="19" y="11" width="48" height="30"/>
@@ -1428,14 +1434,14 @@
         <image name="camera" width="512" height="512"/>
         <image name="discover" width="25" height="25"/>
         <image name="eaten" width="512" height="512"/>
-        <image name="edit-profile" width="16" height="16"/>
+        <image name="edit-profile" width="32" height="32"/>
         <image name="expired" width="512" height="512"/>
-        <image name="facebook" width="16" height="16"/>
-        <image name="gmail" width="16" height="16"/>
+        <image name="facebook" width="32" height="32"/>
+        <image name="gmail" width="32" height="32"/>
         <image name="list" width="25" height="25"/>
-        <image name="lock" width="16" height="16"/>
+        <image name="lock" width="32" height="32"/>
         <image name="logoJam" width="428" height="344"/>
-        <image name="mailRegister" width="16" height="16"/>
+        <image name="mailRegister" width="32" height="32"/>
         <image name="plus" width="25" height="25"/>
         <image name="profile" width="25" height="25"/>
         <image name="saving" width="512" height="512"/>
@@ -1444,8 +1450,8 @@
         <image name="user" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4PH-QT-XEi"/>
-        <segue reference="a6B-v2-Bl1"/>
+        <segue reference="SYv-RS-n2o"/>
+        <segue reference="S8I-hd-6ZZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
