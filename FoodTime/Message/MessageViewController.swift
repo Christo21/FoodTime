@@ -36,7 +36,6 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -46,7 +45,6 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.moveToButtom()
         }
         
-        // Do any additional setup after loading the view.
     }
     
     @objc func keyboardWillShow(notify: NSNotification){
@@ -68,31 +66,12 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         view.endEditing(true)
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Message") as? MessagesCell {
@@ -125,7 +104,6 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
             tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
         }
     }
-    
     @IBAction func sendPressed (_sender: AnyObject){
         dismissKeyboard()
         if (messageField.text != nil && messageField.text != ""){

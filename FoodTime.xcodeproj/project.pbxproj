@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0524731D1FDBDAA6000605BD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524731C1FDBDAA6000605BD /* LoginViewController.swift */; };
-		0524731F1FDBDAF3000605BD /* searchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524731E1FDBDAF3000605BD /* searchTableViewCell.swift */; };
-		052473211FDBDB10000605BD /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052473201FDBDB10000605BD /* Search.swift */; };
-		052473231FDBDB3E000605BD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052473221FDBDB3E000605BD /* SearchViewController.swift */; };
 		052473251FDBDB7A000605BD /* messageDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052473241FDBDB7A000605BD /* messageDetailTableViewCell.swift */; };
 		052473271FDBDBEC000605BD /* MessageDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052473261FDBDBEC000605BD /* MessageDetail.swift */; };
 		052473291FDBDC1E000605BD /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052473281FDBDC1E000605BD /* MessageViewController.swift */; };
@@ -19,13 +16,12 @@
 		0524732F1FDBDC94000605BD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0524732E1FDBDC94000605BD /* ChatViewController.swift */; };
 		052473311FDBDCC9000605BD /* DesignableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052473301FDBDCC9000605BD /* DesignableTextField.swift */; };
 		052473331FDBDD15000605BD /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052473321FDBDD15000605BD /* RegisterViewController.swift */; };
+		0583CA021FDC1C7300C97B08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0583CA011FDC1C7200C97B08 /* GoogleService-Info.plist */; };
 		24D324E15A579939E8062955 /* Pods_FoodTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB6E1C35F33766E3442579E /* Pods_FoodTime.framework */; };
 		68CAA69A1FDB83BB00D288A2 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAA6991FDB83BB00D288A2 /* LoadingIndicatorView.swift */; };
-		6B3F754F1FDA8A6700D16E86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B3F754E1FDA8A6600D16E86 /* GoogleService-Info.plist */; };
 		6B653FB71FD7A06D00501D13 /* CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */; };
 		F30B373D1FD6A2C800F94768 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B373C1FD6A2C800F94768 /* Share.swift */; };
 		F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */; };
-		F324D5F21FCEB8F00093172F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D5F11FCEB8F00093172F /* LoginController.swift */; };
 		F324D6311FD52EE80093172F /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D6301FD52EE80093172F /* MyListViewController.swift */; };
 		F324D6331FD52F120093172F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D6321FD52F120093172F /* Item.swift */; };
 		F324D6351FD52F340093172F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324D6341FD52F340093172F /* User.swift */; };
@@ -45,9 +41,6 @@
 
 /* Begin PBXFileReference section */
 		0524731C1FDBDAA6000605BD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		0524731E1FDBDAF3000605BD /* searchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchTableViewCell.swift; sourceTree = "<group>"; };
-		052473201FDBDB10000605BD /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
-		052473221FDBDB3E000605BD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		052473241FDBDB7A000605BD /* messageDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageDetailTableViewCell.swift; sourceTree = "<group>"; };
 		052473261FDBDBEC000605BD /* MessageDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetail.swift; sourceTree = "<group>"; };
 		052473281FDBDC1E000605BD /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
@@ -56,15 +49,14 @@
 		0524732E1FDBDC94000605BD /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		052473301FDBDCC9000605BD /* DesignableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTextField.swift; sourceTree = "<group>"; };
 		052473321FDBDD15000605BD /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0583CA011FDC1C7200C97B08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0AB6E1C35F33766E3442579E /* Pods_FoodTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6729D159CA2A2193F66E116C /* Pods-FoodTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.debug.xcconfig"; sourceTree = "<group>"; };
 		68CAA6991FDB83BB00D288A2 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
-		6B3F754E1FDA8A6600D16E86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClass.swift; sourceTree = "<group>"; };
 		91B5D6D4C73854A460746221 /* Pods-FoodTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.release.xcconfig"; sourceTree = "<group>"; };
 		F30B373C1FD6A2C800F94768 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarViewController.swift; sourceTree = "<group>"; };
-		F324D5F11FCEB8F00093172F /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		F324D6301FD52EE80093172F /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
 		F324D6321FD52F120093172F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F324D6341FD52F340093172F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -129,6 +121,13 @@
 		F312258E1FCE92C9005E8CA0 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				0524732E1FDBDC94000605BD /* ChatViewController.swift */,
+				052473281FDBDC1E000605BD /* MessageViewController.swift */,
+				052473241FDBDB7A000605BD /* messageDetailTableViewCell.swift */,
+				052473261FDBDBEC000605BD /* MessageDetail.swift */,
+				0524732A1FDBDC4A000605BD /* MessagesCell.swift */,
+				0524732C1FDBDC6E000605BD /* Message.swift */,
+				052473301FDBDCC9000605BD /* DesignableTextField.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -136,7 +135,8 @@
 		F324D5F01FCEB8DD0093172F /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				F324D5F11FCEB8F00093172F /* LoginController.swift */,
+				0524731C1FDBDAA6000605BD /* LoginViewController.swift */,
+				052473321FDBDD15000605BD /* RegisterViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -179,7 +179,7 @@
 		F3BFC2881FCD339E00062C00 = {
 			isa = PBXGroup;
 			children = (
-				6B3F754E1FDA8A6600D16E86 /* GoogleService-Info.plist */,
+				0583CA011FDC1C7200C97B08 /* GoogleService-Info.plist */,
 				F3BFC2931FCD339E00062C00 /* FoodTime */,
 				F3BFC2921FCD339E00062C00 /* Products */,
 				B275CB3DCC370A19C7F2FBB8 /* Pods */,
@@ -208,18 +208,6 @@
 				F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */,
 				F3BFC2961FCD339E00062C00 /* ViewController.swift */,
 				F3BFC2941FCD339E00062C00 /* AppDelegate.swift */,
-				0524731C1FDBDAA6000605BD /* LoginViewController.swift */,
-				0524731E1FDBDAF3000605BD /* searchTableViewCell.swift */,
-				052473201FDBDB10000605BD /* Search.swift */,
-				052473221FDBDB3E000605BD /* SearchViewController.swift */,
-				052473241FDBDB7A000605BD /* messageDetailTableViewCell.swift */,
-				052473261FDBDBEC000605BD /* MessageDetail.swift */,
-				052473281FDBDC1E000605BD /* MessageViewController.swift */,
-				0524732A1FDBDC4A000605BD /* MessagesCell.swift */,
-				0524732C1FDBDC6E000605BD /* Message.swift */,
-				0524732E1FDBDC94000605BD /* ChatViewController.swift */,
-				052473301FDBDCC9000605BD /* DesignableTextField.swift */,
-				052473321FDBDD15000605BD /* RegisterViewController.swift */,
 				F3BFC2981FCD339E00062C00 /* Main.storyboard */,
 				F3BFC29E1FCD339E00062C00 /* Assets.xcassets */,
 				F3BFC2A01FCD339E00062C00 /* LaunchScreen.storyboard */,
@@ -292,9 +280,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3BFC2A21FCD339E00062C00 /* LaunchScreen.storyboard in Resources */,
-				6B3F754F1FDA8A6700D16E86 /* GoogleService-Info.plist in Resources */,
 				F3BFC29F1FCD339E00062C00 /* Assets.xcassets in Resources */,
 				F3BFC29A1FCD339E00062C00 /* Main.storyboard in Resources */,
+				0583CA021FDC1C7300C97B08 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +355,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0524731F1FDBDAF3000605BD /* searchTableViewCell.swift in Sources */,
 				0524731D1FDBDAA6000605BD /* LoginViewController.swift in Sources */,
 				F3720B501FD64990008E9CF3 /* AddFormViewController.swift in Sources */,
 				052473311FDBDCC9000605BD /* DesignableTextField.swift in Sources */,
@@ -388,13 +375,10 @@
 				F30B373D1FD6A2C800F94768 /* Share.swift in Sources */,
 				F324D6351FD52F340093172F /* User.swift in Sources */,
 				F324D6371FD52F680093172F /* HomeTableViewCell.swift in Sources */,
-				052473231FDBDB3E000605BD /* SearchViewController.swift in Sources */,
 				F324D63C1FD53B590093172F /* DiscoverViewController.swift in Sources */,
 				F324D6411FD54F920093172F /* ProfileViewController.swift in Sources */,
-				052473211FDBDB10000605BD /* Search.swift in Sources */,
 				F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */,
 				0524732F1FDBDC94000605BD /* ChatViewController.swift in Sources */,
-				F324D5F21FCEB8F00093172F /* LoginController.swift in Sources */,
 				052473331FDBDD15000605BD /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,10 +518,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 829LFR3654;
 				INFOPLIST_FILE = FoodTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.binus.FoodTime;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.binus.FoodTime1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -550,10 +534,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 829LFR3654;
 				INFOPLIST_FILE = FoodTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.binus.FoodTime;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.binus.FoodTime1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

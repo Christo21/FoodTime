@@ -28,8 +28,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         tableView.delegate = self
         tableView.dataSource = self
-        /*
-        Database.database().reference().child("users").child(currentUser!).child("messages").observe(.value, with: { (snapshot) in
+    Database.database().reference().child("users").child(currentUser!).child("messages").observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 self.messageDetail.removeAll()
                 for data in snapshot {
@@ -40,10 +39,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                 }
             }
-            self.tableView.reloadData()
+        self.tableView.reloadData()
         })
-        */
-        // Do any additional setup after loading the view.
+ 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -77,27 +75,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationViewContoller.messageId = messageId
         }
     }
+    
     @IBAction func signOut (_ sender: AnyObject){
         try! Auth.auth().signOut()
-        KeychainWrapper.standard.removeObject(forKey:  "uid")
+        KeychainWrapper.standard.removeObject(forKey: "uid")
         dismiss(animated: true, completion: nil)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 

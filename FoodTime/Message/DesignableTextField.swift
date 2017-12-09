@@ -33,17 +33,9 @@ class DesignableTextField: UITextField {
             view.addSubview(imageView)
             leftView = view
         } else {
-            //image is nill
             leftViewMode = .never
         }
     }
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
     
 }
 
