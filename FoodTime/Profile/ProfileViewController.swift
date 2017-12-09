@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             destination.name = nameLbl
             destination.note = noteLbl
             destination.quantity = quantityLbl
-            destination.claimButton.isHidden = true
+            destination.hiddenButton = true
         }
     }
     
