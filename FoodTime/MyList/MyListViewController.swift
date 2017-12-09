@@ -96,7 +96,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             //should be link to share view
             success(true)
         }
-        shareAction.backgroundColor = .green
+        shareAction.backgroundColor = #colorLiteral(red: 0.1803921569, green: 0.8, blue: 0.4431372549, alpha: 1)
         return UISwipeActionsConfiguration(actions: [shareAction])
     }
     
@@ -106,15 +106,14 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             success(true)
         }
         let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (ac, view, success) in
-            //print("sebelum dihapus \(self.filteredItem[indexPath.row].getRegistDate())")
             self.itemCoreData.deleteData(key: "registDate", value: self.filteredItem[indexPath.row].getRegistDate())
             self.filteredItem.remove(at: indexPath.row)
             self.homeItem.remove(at: indexPath.row)
             self.homeTableView.reloadData()
             success(true)
         }
-        editAction.backgroundColor = .orange
-        deleteAction.backgroundColor = .red
+        editAction.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6117647059, blue: 0.07058823529, alpha: 1)
+        deleteAction.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
     

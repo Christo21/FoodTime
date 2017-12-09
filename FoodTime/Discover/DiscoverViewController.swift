@@ -37,13 +37,13 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     
-    var selectedImage: String = ""
+    var selectedImage: UIImage!
     var nameLbl: String = ""
     var noteLbl: String = ""
     var quantityLbl: String = ""
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedImage = discoverItem[indexPath.row].getImage()
+        selectedImage = discoverItem[indexPath.row].getUIImage()
         nameLbl = discoverItem[indexPath.row].getName()
         noteLbl = discoverItem[indexPath.row].getNote()
         quantityLbl = String(discoverItem[indexPath.row].getQuantity())
