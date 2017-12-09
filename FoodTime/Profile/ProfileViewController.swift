@@ -23,29 +23,30 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         return cell
     }
     
-//    var selectedImage: String = ""
-//    var nameLbl: String = ""
-//    var noteLbl: String = ""
-//    var quantityLbl: String = ""
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        selectedImage = shareItem[indexPath.row].getImage()
-//        nameLbl = shareItem[indexPath.row].getName()
-//        noteLbl = shareItem[indexPath.row].getNote()
-//        quantityLbl = String(shareItem[indexPath.row].getQuantity())
-//
-//        self.performSegue(withIdentifier: "showDetail", sender: indexPath)
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showDetail"{
-//            let destination = segue.destination as! DetailDiscoverViewController
-//            destination.image = selectedImage
-//            destination.name = nameLbl
-//            destination.note = noteLbl
-//            destination.quantity = quantityLbl
-//        }
-//    }
+    var selectedImage: UIImage!
+    var nameLbl: String = ""
+    var noteLbl: String = ""
+    var quantityLbl: String = ""
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedImage = shareItem[indexPath.row].getUIImage()
+        nameLbl = shareItem[indexPath.row].getName()
+        noteLbl = shareItem[indexPath.row].getNote()
+        quantityLbl = String(shareItem[indexPath.row].getQuantity())
+
+        self.performSegue(withIdentifier: "showSharedDetail", sender: indexPath)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showSharedDetail"{
+            let destination = segue.destination as! DetailDiscoverViewController
+            destination.image = selectedImage
+            destination.name = nameLbl
+            destination.note = noteLbl
+            destination.quantity = quantityLbl
+            destination.claimButton.isHidden = true
+        }
+    }
     
     @IBAction func buttonEditProfile(_ sender: Any) {
         performSegue(withIdentifier: "editProfile", sender: self)

@@ -647,7 +647,6 @@
                                                 </view>
                                                 <connections>
                                                     <outlet property="detailImage" destination="mje-wK-g67" id="fVO-AD-56R"/>
-                                                    <segue destination="fkS-er-4CV" kind="show" identifier="showDetail" id="B4n-cm-5GX"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -678,6 +677,7 @@
                         <outlet property="profileCollectionView" destination="fmu-HW-1B7" id="pSF-1y-JDH"/>
                         <outlet property="profileFlowLayout" destination="4Rd-xp-ngZ" id="zRd-m8-SFz"/>
                         <outlet property="scrollView" destination="xGw-5S-gcC" id="TO7-20-4yg"/>
+                        <segue destination="fkS-er-4CV" kind="show" identifier="showSharedDetail" id="lj9-Qh-lK9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZa-fx-ujh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1502,7 +1502,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="4PH-QT-XEi"/>
         <segue reference="a6B-v2-Bl1"/>
-        <segue reference="B4n-cm-5GX"/>
+        <segue reference="lj9-Qh-lK9"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -19,7 +19,8 @@ class DetailDiscoverViewController: UIViewController {
     @IBOutlet weak var claimButton: UIButton!
     @IBAction func detailClaimButton(_ sender: UIButton) {
     }
-    var image: String = ""
+    
+    var image: UIImage!
     var name: String = ""
     var quantity: String = ""
     var note: String = ""
@@ -27,7 +28,7 @@ class DetailDiscoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailImageView.image = UIImage(named: image)
+        detailImageView.image = image
         detailNameView.text = name
         detailQuantityView.text = quantity
         detailNoteView.text = note
