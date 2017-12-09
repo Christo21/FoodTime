@@ -115,9 +115,9 @@ class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
         if !valid {
             return false
         } else {
-            let item = Share(quantityToShare: Int(qtyToShare)!, quantityToClaim: Int(qtyToClaim)!, name: name, quantity: 0, image: picture, price: 0, note: note, registDate: Date(), expiredDate: datePicker.date)
             
-            delegate?.scheduleNotification(item)
+            let item = Share(quantityToShare: Int(qtyToShare)!, quantityToClaim: Int(qtyToClaim)!, name: name, quantity: 0, image: picture, price: 0, note: note, registDate: Date(), expiredDate: datePicker.date)
+            print(item)
             shareItemCoreData.saveData(object: item)
         }
         return true
