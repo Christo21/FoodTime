@@ -8,7 +8,44 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(shareItem.count)
+        return shareItem.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = profileCollectionView.dequeueReusableCell(withReuseIdentifier: "itemDetailCell", for: indexPath) as! ProfileViewCell
+        
+        cell.detailImage.image = shareItem[indexPath.row].getUIImage()
+        
+        return cell
+    }
+    
+//    var selectedImage: String = ""
+//    var nameLbl: String = ""
+//    var noteLbl: String = ""
+//    var quantityLbl: String = ""
+//
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        selectedImage = shareItem[indexPath.row].getImage()
+//        nameLbl = shareItem[indexPath.row].getName()
+//        noteLbl = shareItem[indexPath.row].getNote()
+//        quantityLbl = String(shareItem[indexPath.row].getQuantity())
+//
+//        self.performSegue(withIdentifier: "showDetail", sender: indexPath)
+//    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "showDetail"{
+//            let destination = segue.destination as! DetailDiscoverViewController
+//            destination.image = selectedImage
+//            destination.name = nameLbl
+//            destination.note = noteLbl
+//            destination.quantity = quantityLbl
+//        }
+//    }
     
     @IBAction func buttonEditProfile(_ sender: Any) {
         performSegue(withIdentifier: "editProfile", sender: self)
@@ -36,30 +73,52 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         self.present(actionSheet, animated: true, completion: nil)
     }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        imageViewProfile.image = image
-        picker.dismiss(animated: true, completion: nil)
-    }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
+    
+    @IBOutlet weak var profileCollectionView: UICollectionView!
+    @IBOutlet weak var profileFlowLayout: UICollectionViewFlowLayout!
+    
+    var shareItem: [Item] = []
+    var itemCoreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
     
     override func viewDidLoad() {
-        
+        loadItems()
         super.viewDidLoad()
         scrollView.contentSize.height = 1000
         imageViewProfile.layer.cornerRadius = imageViewProfile.frame.size.width/2
         imageViewProfile.layer.borderWidth = 3
         imageViewProfile.layer.borderColor = UIColor.darkGray.cgColor
         imageViewProfile.clipsToBounds = true
+        
+        profileFlowLayout.itemSize = CGSize(width: (self.profileCollectionView.frame.width-2.0)/2.0, height: (self.profileCollectionView.frame.width-2.0)/2.0)
+        profileCollectionView.reloadData()
+        self.profileCollectionView.delegate = self
+        self.profileCollectionView.dataSource = self
+        
         setupNavigationBarItem()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        shareItem.removeAll()
+        loadItems()
+        profileCollectionView.reloadData()
     }
+    func loadItems(){
+        let dataStored = itemCoreData.getData()
+        let dataStoredCount = dataStored.count
+        
+        for itemStored in dataStored{
+            shareItem.append(Item(item: itemStored))
+        }
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imageViewProfile.image = image
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     public func setupNavigationBarItem(){
         //kiri
         let leftButton = UIButton(type: .system)

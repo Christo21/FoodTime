@@ -10,6 +10,7 @@
 		24D324E15A579939E8062955 /* Pods_FoodTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB6E1C35F33766E3442579E /* Pods_FoodTime.framework */; };
 		680BE3EF1FDBA5390067A5A2 /* AddViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680BE3EE1FDBA5390067A5A2 /* AddViewCell.swift */; };
 		680BE3F11FDBA9680067A5A2 /* itemDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680BE3F01FDBA9680067A5A2 /* itemDataList.swift */; };
+		680BE3F31FDBF2390067A5A2 /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680BE3F21FDBF2390067A5A2 /* ProfileViewCell.swift */; };
 		68CAA69A1FDB83BB00D288A2 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAA6991FDB83BB00D288A2 /* LoadingIndicatorView.swift */; };
 		6B3F754F1FDA8A6700D16E86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B3F754E1FDA8A6600D16E86 /* GoogleService-Info.plist */; };
 		6B653FB71FD7A06D00501D13 /* CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */; };
@@ -38,6 +39,7 @@
 		6729D159CA2A2193F66E116C /* Pods-FoodTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.debug.xcconfig"; sourceTree = "<group>"; };
 		680BE3EE1FDBA5390067A5A2 /* AddViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewCell.swift; sourceTree = "<group>"; };
 		680BE3F01FDBA9680067A5A2 /* itemDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemDataList.swift; sourceTree = "<group>"; };
+		680BE3F21FDBF2390067A5A2 /* ProfileViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewCell.swift; sourceTree = "<group>"; };
 		68CAA6991FDB83BB00D288A2 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		6B3F754E1FDA8A6600D16E86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClass.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				F324D6401FD54F920093172F /* ProfileViewController.swift */,
+				680BE3F21FDBF2390067A5A2 /* ProfileViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				F324D63A1FD53B0F0093172F /* DetailDiscoverViewController.swift in Sources */,
 				F3BFC29D1FCD339E00062C00 /* FoodTime.xcdatamodeld in Sources */,
 				F3BFC2971FCD339E00062C00 /* ViewController.swift in Sources */,
+				680BE3F31FDBF2390067A5A2 /* ProfileViewCell.swift in Sources */,
 				F324D6311FD52EE80093172F /* MyListViewController.swift in Sources */,
 				68CAA69A1FDB83BB00D288A2 /* LoadingIndicatorView.swift in Sources */,
 				F3BFC2951FCD339E00062C00 /* AppDelegate.swift in Sources */,

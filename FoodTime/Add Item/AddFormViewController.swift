@@ -18,7 +18,6 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("ITEM COUNT IS \(itemDataLists.count)")
         return itemDataLists.count
     }
     

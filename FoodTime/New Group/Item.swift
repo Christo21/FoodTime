@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class Item{
     var name: String
@@ -78,6 +79,11 @@ class Item{
     }
     func getExipredDate() -> Date {
         return expiredDate
+    }
+    func getUIImage() -> UIImage {
+        let dataDecoded : Data = Data(base64Encoded: image, options: .ignoreUnknownCharacters)!
+        
+        return UIImage(data: dataDecoded as Data)!
     }
     
     //setter

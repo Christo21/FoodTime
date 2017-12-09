@@ -622,7 +622,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fmu-HW-1B7">
-                                        <rect key="frame" x="0.0" y="391" width="375" height="163"/>
+                                        <rect key="frame" x="0.0" y="391" width="375" height="201"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="4Rd-xp-ngZ">
@@ -632,7 +632,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="detailCell" id="oon-5K-jNR">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemDetailCell" id="oon-5K-jNR" customClass="ProfileViewCell" customModule="FoodTime" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -645,6 +645,10 @@
                                                         </imageView>
                                                     </subviews>
                                                 </view>
+                                                <connections>
+                                                    <outlet property="detailImage" destination="mje-wK-g67" id="fVO-AD-56R"/>
+                                                    <segue destination="fkS-er-4CV" kind="show" identifier="showDetail" id="B4n-cm-5GX"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
@@ -671,6 +675,8 @@
                     <navigationItem key="navigationItem" title="Profile" id="FE0-Pa-9Qn"/>
                     <connections>
                         <outlet property="imageViewProfile" destination="KmB-ls-cfU" id="bl9-ti-lwG"/>
+                        <outlet property="profileCollectionView" destination="fmu-HW-1B7" id="pSF-1y-JDH"/>
+                        <outlet property="profileFlowLayout" destination="4Rd-xp-ngZ" id="zRd-m8-SFz"/>
                         <outlet property="scrollView" destination="xGw-5S-gcC" id="TO7-20-4yg"/>
                     </connections>
                 </viewController>
@@ -1496,6 +1502,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="4PH-QT-XEi"/>
         <segue reference="a6B-v2-Bl1"/>
+        <segue reference="B4n-cm-5GX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
