@@ -17,14 +17,15 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @IBOutlet weak var discoverCollectionView: UICollectionView!
     @IBOutlet weak var discoverFlowLayout: UICollectionViewFlowLayout!
-    
+    var itemCoreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
     var discoverItem:[Item] = []
     func loadItems(){
-        let Burger: Item = Item(name: "Burger", quantity: 2, image: "camera", price: 20000, note: "This is your Burger", registDate: Date(timeIntervalSinceNow: 0), expiredDate: Date(timeIntervalSinceNow: 60))
+        let dataStored = itemCoreData.getData()
+        let dataStoredCount = dataStored.count
         
-        var items: [Item] = []
-        items.append(Burger)
-        discoverItem = items
+        for itemStored in dataStored{
+            discoverItem.append(Item(item: itemStored))
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -33,7 +34,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = discoverCollectionView.dequeueReusableCell(withReuseIdentifier: "detailCell", for: indexPath) as! DiscoverCollectionViewCell
-        cell.detailImageView.image = UIImage(named: discoverItem[indexPath.row].getImage())
+        cell.detailImageView.image = discoverItem[indexPath.row].getUIImage()
         return cell
     }
     
@@ -60,13 +61,18 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
             destination.quantity = quantityLbl
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        discoverItem.removeAll()
+        loadItems()
+        discoverCollectionView.reloadData()
+    }
     override func viewDidLoad() {
+        loadItems()
         super.viewDidLoad()
         setupNavigationBarItem()
         
         discoverFlowLayout.itemSize = CGSize(width: (self.discoverCollectionView.frame.width-2.0)/2.0, height: (self.discoverCollectionView.frame.width-2.0)/2.0)
-        
-        loadItems()
+    
         discoverCollectionView.reloadData()
         self.discoverCollectionView.delegate = self
         self.discoverCollectionView.dataSource = self
