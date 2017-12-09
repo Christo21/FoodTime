@@ -13,12 +13,7 @@ class Share: Item {
     var quantityToShare: Int
     var quantityToClaim: Int
     
-    init(quantityToShare: Int, quantityToClaim: Int, name: String, quantity: Int, image: String, price: Int, note: String, registDate: String, expiredDate: String) {
-        self.quantityToClaim = quantityToShare
-        self.quantityToShare = quantityToShare
-        super.init(name: name, quantity: quantity, image: image, price: price, note: note, registDate: registDate, expiredDate: expiredDate)
-    }
-    init(quantityToShare: Int, quantityToClaim: Int, idItem: String, name: String, type: String, quantity: Int, image: String, price: Int, note: String, registDate: Date, expiredDate: Date) {
+    init(quantityToShare: Int, quantityToClaim: Int, name: String, quantity: Int, image: String, price: Int, note: String, registDate: Date, expiredDate: Date) {
         self.quantityToClaim = quantityToShare
         self.quantityToShare = quantityToShare
         super.init(name: name, quantity: quantity, image: image, price: price, note: note, registDate: registDate, expiredDate: expiredDate)

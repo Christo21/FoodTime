@@ -18,6 +18,7 @@ class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var photo: UIButton!
     
+    let delegate = UIApplication.shared.delegate as? AppDelegate
     var imagePicker: UIImagePickerController!
     
     var numberData: [Int] = []
@@ -46,7 +47,7 @@ class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
         
         nameField.delegate = self
         notesView.delegate = self
-        
+        nameField.textAlignment = .center
         notesView.layer.borderWidth = 1
         notesView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         notesView.layer.cornerRadius = 8
@@ -65,20 +66,17 @@ class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     var alert = UIAlertController()
     
     @IBAction func sharing(_ sender: UIBarButtonItem) {
-        if validating() {
-            let alert = UIAlertController(title: "Successfull", message: "Your item has been shared", preferredStyle: UIAlertControllerStyle.alert)
-            
-            // add an action (button)
+        let alert: UIAlertController!
+        if self.validating() {
+            alert = UIAlertController(title: "Successfull", message: "Your item has added to your list", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
-                _ = self.navigationController?.popToRootViewController(animated: false)
                 
             }))
-            
-            // show the alert
-            self.present(alert, animated: true, completion: nil)
         } else {
-            
+            alert = UIAlertController(title: "Warning", message: "Fill the item name or picture or notes", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in }))
         }
+        self.present(alert, animated: true, completion: nil)
     }
     
     var placeholderLabel: UILabel!
@@ -102,21 +100,24 @@ class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
             nameField.attributedPlaceholder = NSAttributedString(string:"max 30 characters",attributes:[NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 0.75)])
             valid = false
         }
-        if photo.currentImage == nil{
+        if photo.currentImage == #imageLiteral(resourceName: "camera"){
             valid = false
         } else {
             let imageData:NSData = UIImagePNGRepresentation(photo.currentImage!)! as NSData as NSData
             picture = imageData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         }
-        if notesView.text != nil{
+        if notesView.text == ""{
+            valid = false
+        } else {
             note = notesView.text!
         }
         
         if !valid {
             return false
         } else {
-            let item = Share(quantityToShare: Int(qtyToShare)!, quantityToClaim: Int(qtyToClaim)!, name: name, quantity: 0, image: picture, price: 0, note: note, registDate: String(describing: Date()), expiredDate: String(describing: datePicker.date))
+            let item = Share(quantityToShare: Int(qtyToShare)!, quantityToClaim: Int(qtyToClaim)!, name: name, quantity: 0, image: picture, price: 0, note: note, registDate: Date(), expiredDate: datePicker.date)
             
+            delegate?.scheduleNotification(item)
             shareItemCoreData.saveData(object: item)
         }
         return true
@@ -162,12 +163,12 @@ class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == self.notesView {
-            animation(y: -100)
+            animation(y: -200)
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == self.notesView {
-            animation(y: 100)
+            animation(y: 200)
         }
     }
     func animation(y: CGFloat) {
@@ -177,10 +178,6 @@ class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
         UIView .setAnimationBeginsFromCurrentState(true)
         self.view.frame = CGRect(x: self.view.frame.origin.x, y: (self.view.frame.origin.y + y), width: self.view.frame.size.width, height: self.view.frame.size.height)
         UIView .commitAnimations()
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
