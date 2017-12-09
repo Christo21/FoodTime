@@ -8,11 +8,35 @@
 
 import UIKit
 
-class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
+class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    let itemData: itemDataList = itemDataList()
+    var itemDataLists: [itemDataList.itemData] = []
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("ITEM COUNT IS \(itemDataLists.count)")
+        return itemDataLists.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = ListView.dequeueReusableCell(withIdentifier: "detailItemCell", for: indexPath) as! AddViewCell
+        cell.nameLabel.text = itemDataLists[indexPath.row].getName()
+        cell.expLabel.text = "Expiration date: +\(itemDataLists[indexPath.row].getExpiredDays()) days"
+        
+        return cell
+    }
+    
     
     let delegate = UIApplication.shared.delegate as? AppDelegate
     
     var itemCoreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
+    
+    
+    @IBOutlet weak var ListView: UITableView!
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var priceField: UITextField!
@@ -20,12 +44,16 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var qtyPicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var photo: UIButton!
+    @IBAction func minimize(_ sender: UIButton) {
+        ListView.isHidden = true
+        minimizeButton.isHidden = true
+    }
+    @IBOutlet weak var minimizeButton: UIButton!
     
     var imagePicker: UIImagePickerController!
     var numberData: [Int] = []
     var unitData: [String] = ["ons", "gram", "kg", "liter(s)", "piece(s)", "bottle(s)", "bag(s)", "can(s)", "jar(s)", "bundle(s)", "glass(es)"]
     var placeholderLabel: UILabel!
-    
     
     @IBAction func photoButtonDidTap(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -39,12 +67,19 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     override func viewDidLoad() {
+        ListView.isHidden = true
+        minimizeButton.isHidden = true
+        itemDataLists = itemData.getItemDataList()
+        print("ITEM COUNT IS \(itemDataLists.count)")
         super.viewDidLoad()
+        
+        ListView.reloadData()
+        self.ListView.delegate = self
+        self.ListView.dataSource = self
         
         for i in 1...100 {
             numberData.append(i)
         }
-        
         
         qtyPicker.dataSource = self
         qtyPicker.delegate = self
@@ -58,14 +93,22 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         notesView.layer.cornerRadius = 8
         
         setDate()
-        
+        nameField.addTarget(self, action: #selector(showList), for: UIControlEvents.touchDown)
+        nameField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
-    func beginLoading() {
-        
+    @objc func showList() {
+        ListView.isHidden = false
+        minimizeButton.isHidden = false
     }
-    func endLoading() {
-        
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if textField.text == "" {
+            itemDataLists = itemData.getItemDataList()
+            self.ListView.reloadData()
+        } else {
+            itemDataLists = itemDataLists.filter({ $0.getName().lowercased().contains(textField.text!.lowercased())})
+            self.ListView.reloadData()
+        }
     }
     
     //setting date style
