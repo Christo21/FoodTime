@@ -1,21 +1,20 @@
 //
-//  AddFormViewController.swift
+//  ShareFormViewController.swift
 //  FoodTime
 //
-//  Created by Christoper Jonathan on 05/12/17.
+//  Created by Christoper Jonathan on 08/12/17.
 //  Copyright © 2017 binus. All rights reserved.
 //
 
 import UIKit
 
-class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
+class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     
-    var itemCoreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
+    var shareItemCoreData: CoreDataClass = CoreDataClass(entity: "ShareItemModel")
     
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var priceField: UITextField!
     @IBOutlet weak var notesView: UITextView!
-    @IBOutlet weak var qtyPicker: UIPickerView!
+    @IBOutlet weak var qtyToPicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var photo: UIButton!
     
@@ -35,17 +34,17 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         for i in 1...100 {
             numberData.append(i)
         }
         
-        qtyPicker.dataSource = self
-        qtyPicker.delegate = self
+        qtyToPicker.dataSource = self
+        qtyToPicker.delegate = self
         
         nameField.delegate = self
-        priceField.delegate = self
         notesView.delegate = self
         
         notesView.layer.borderWidth = 1
@@ -53,7 +52,6 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         notesView.layer.cornerRadius = 8
         
         setDate()
-        
     }
     
     func setDate() {
@@ -66,20 +64,13 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     var alert = UIAlertController()
     
-//    @IBAction func savingItem(segue:UIStoryboardSegue) {
-//        if segue.identifier == "savingItem"{
-//            let list = segue.source as? MyListViewController
-//            list?.loadItems()
-//        }
-//    }
-    
-    @IBAction func saving(_ sender: UIBarButtonItem) {
+    @IBAction func sharing(_ sender: UIBarButtonItem) {
         if validating() {
-            let alert = UIAlertController(title: "Successfull", message: "Your item has added to your list", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Successfull", message: "Your item has been shared", preferredStyle: UIAlertControllerStyle.alert)
             
             // add an action (button)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
-                               _ = self.navigationController?.popToRootViewController(animated: false)
+                _ = self.navigationController?.popToRootViewController(animated: false)
                 
             }))
             
@@ -90,14 +81,12 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
     }
     
-    
-    
     var placeholderLabel: UILabel!
     
     func validating() -> Bool{
         let name: String = nameField.text!
-        let price: String = priceField.text!
-        let qty: String = String(qtyPicker.selectedRow(inComponent: 0)) + String(qtyPicker.selectedRow(inComponent: 1))
+        let qtyToShare: String = String(qtyToPicker.selectedRow(inComponent: 0)) + String(qtyToPicker.selectedRow(inComponent: 1))
+        let qtyToClaim: String = String(qtyToPicker.selectedRow(inComponent: 2))
         var note: String = ""
         var picture: String = ""
         
@@ -113,11 +102,6 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             nameField.attributedPlaceholder = NSAttributedString(string:"max 30 characters",attributes:[NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 0.75)])
             valid = false
         }
-        if price == ""{
-            priceField.text = nil
-            priceField.attributedPlaceholder = NSAttributedString(string:"fill the price", attributes:[NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 0.75)])
-            valid = false
-        }
         if photo.currentImage == nil{
             valid = false
         } else {
@@ -131,9 +115,9 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         if !valid {
             return false
         } else {
-            let item = Item(name: name, quantity: Int(qty)!, image: picture, price: Int(price)!, note: note, registDate: Date(), expiredDate: datePicker.date)
+            let item = Share(quantityToShare: Int(qtyToShare)!, quantityToClaim: Int(qtyToClaim)!, name: name, quantity: 0, image: picture, price: 0, note: note, registDate: String(describing: Date()), expiredDate: String(describing: datePicker.date))
             
-            itemCoreData.saveData(object: item)
+            shareItemCoreData.saveData(object: item)
         }
         return true
         
@@ -149,10 +133,10 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
+        return 3
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
+        if component == 0 || component == 2 {
             return numberData.count
         } else if component == 1 {
             return unitData.count
@@ -160,7 +144,7 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         return 0
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0 {
+        if component == 0 || component == 2 {
             return String(numberData[row])
         } else if component == 1 {
             return unitData[row]
@@ -168,38 +152,14 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         return ""
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        
-    }
-    
-    
     override var canBecomeFirstResponder: Bool {
         return true
     }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.becomeFirstResponder()
     }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == nameField {
-            priceField.becomeFirstResponder()
-        } else {
-            self.becomeFirstResponder()
-        }
-        return false
-    }
     
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == self.priceField {
-            animation(y: -80)
-        }
-    }
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
-        if textField == self.priceField {
-            animation(y: 80)
-        }
-    }
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == self.notesView {
             animation(y: -100)
