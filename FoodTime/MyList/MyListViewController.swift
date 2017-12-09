@@ -19,6 +19,29 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     var itemCoreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
     var userCoreData: CoreDataClass = CoreDataClass(entity: "UserModel")
     
+    let delegate = UIApplication.shared.delegate as? AppDelegate
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupNavigationBarItem()
+        loadItems()
+        filteredItem = homeItem
+        homeTableView.reloadData()
+        self.homeTableView.delegate = self
+        self.homeTableView.dataSource = self
+        self.homeSearchBar.delegate = self
+
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        reload()
+        filteredItem = homeItem
+        homeTableView.reloadData()
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredItem.count
     }
@@ -40,7 +63,32 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         cell.imageName.text = filteredItem[indexPath.row].getName()
         cell.noteOfImage.text = filteredItem[indexPath.row].getNote()
         
+        cell.indicator.textColor = colorOfIndicator(item: filteredItem[indexPath.row])
+        
         return cell
+    }
+    
+    //menentukan warna indikator
+    func colorOfIndicator(item: Item) -> UIColor {
+        let calendar = NSCalendar.current
+        let date1 = calendar.startOfDay(for: item.getRegistDate())
+        let date2 = calendar.startOfDay(for: item.getExipredDate())
+        let dateNow = Date()
+        
+        //print("DEBUG INDICATOR || date1 : \(date1), date 2 : \(date2), now : \(dateNow)")
+        
+        let minute: Double = Double(calendar.dateComponents([.second], from: date1, to: date2).second!)
+        let now: Double = Double(calendar.dateComponents([.second], from: dateNow, to: date2).second!)
+        
+        //print("\(minute) \(now)")
+        
+        if now > minute * 0.7 {
+            return #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        } else if now > minute * 0.3 {
+            return #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        } else {
+            return #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        }
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -48,7 +96,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             //should be link to share view
             success(true)
         }
-        shareAction.backgroundColor = .green
+        shareAction.backgroundColor = #colorLiteral(red: 0.1803921569, green: 0.8, blue: 0.4431372549, alpha: 1)
         return UISwipeActionsConfiguration(actions: [shareAction])
     }
     
@@ -58,14 +106,17 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             success(true)
         }
         let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (ac, view, success) in
+            self.itemCoreData.deleteData(key: "registDate", value: self.filteredItem[indexPath.row].getRegistDate())
             self.filteredItem.remove(at: indexPath.row)
+            self.homeItem.remove(at: indexPath.row)
             self.homeTableView.reloadData()
             success(true)
         }
-        editAction.backgroundColor = .orange
-        deleteAction.backgroundColor = .red
+        editAction.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6117647059, blue: 0.07058823529, alpha: 1)
+        deleteAction.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.2980392157, blue: 0.2352941176, alpha: 1)
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             filteredItem = homeItem
@@ -76,26 +127,65 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             self.homeTableView.reloadData()
         }
     }
+    
     func reload() {
         let dataStored = itemCoreData.getData()
         let dataStoredCount = itemCoreData.getData().count
         
-        if dataStoredCount > filteredItem.count {
-            homeItem.append(Item(item: dataStored[dataStoredCount-1]))
+        if dataStoredCount > homeItem.count && homeItem.count == filteredItem.count{
+            let newItem = dataStored[dataStoredCount - 1]
+            let newItemDate = newItem.value(forKey: "expiredDate") as! Date
+            
+            
+            //masukin data sesuai urutan
+            if dataStoredCount > 1 {
+                for index in 0...homeItem.count{
+                    if index == homeItem.count - 1{
+                        homeItem.append(Item(item: newItem))
+                        break
+                    }
+                    let oldItem = homeItem[index].getExipredDate()
+                    let afterOldItem = homeItem[index+1].getExipredDate()
+                    
+                        let dateNow = Date()
+                        let calendar = NSCalendar.current
+                        let newItemInDay: Int = Int(calendar.dateComponents([.day], from: dateNow, to: newItemDate).day!)
+                        let oldItemInDay: Int = Int(calendar.dateComponents([.day], from: dateNow, to: oldItem).day!)
+                        let afterOldItemInDay: Int = Int(calendar.dateComponents([.day], from: dateNow, to: afterOldItem).day!)
+                    
+                        //print("DEBUG INSERT ITEM || new: \(newItemInDay) old: \(oldItemInDay) after: \(afterOldItemInDay)")
+                        if newItemInDay > oldItemInDay && newItemInDay <= afterOldItemInDay{
+                            homeItem.insert(Item(item: newItem), at: index + 1)
+                            break
+                        } else if newItemInDay < oldItemInDay && newItemInDay <= afterOldItemInDay{
+                            homeItem.insert(Item(item: newItem), at: index)
+                            break
+                        }
+                }
+            } else {
+                homeItem.append(Item(item: newItem))
+            }
         }
     }
+    
+    func sorterForFileIDASC(this:Item, that:Item) -> Bool {
+        return this.getExipredDate() < that.getExipredDate()
+    }
+    
     func loadItems(){
         let dataStored = itemCoreData.getData()
         let dataStoredCount = dataStored.count
         
         for itemStored in dataStored{
+           // print("yg ada di list \(itemStored.value(forKey: "registDate"))")
             homeItem.append(Item(item: itemStored))
         }
         
-        let dataTempCount = homeItem.count
-        print("stored: \(dataStoredCount) | temp: \(dataTempCount)")
+        homeItem.sort(by: sorterForFileIDASC(this:that:))
         
-        //delegate?.scheduleNotification(Burger)
+        let dataTempCount = homeItem.count
+        //print("stored: \(dataStoredCount) | temp: \(dataTempCount)")
+        
 //        let coreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
 //        coreData.clearData()
 //        coreData.saveData(object: Burger)
@@ -117,26 +207,6 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
 //        print(coreDataUser.getData().count)
     }
     
-    let delegate = UIApplication.shared.delegate as? AppDelegate
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupNavigationBarItem()
-        loadItems()
-        filteredItem = homeItem
-        homeTableView.reloadData()
-        self.homeTableView.delegate = self
-        self.homeTableView.dataSource = self
-        self.homeSearchBar.delegate = self
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     public func setupNavigationBarItem(){
         //kiri
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"mail"), style: .plain, target: self, action: #selector(addTapped))
@@ -149,22 +219,6 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         self.performSegue(withIdentifier: "addItem", sender: nil)
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        
-        reload()
-        filteredItem = homeItem
-        homeTableView.reloadData()
-    }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 

@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 class DiscoverViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    var locationManager = CLLocationManager()
+//    var loadingIndicator: LoadingIndicator!
     
     @IBOutlet weak var discoverCollectionView: UICollectionView!
     @IBOutlet weak var discoverFlowLayout: UICollectionViewFlowLayout!
@@ -32,13 +37,13 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     
-    var selectedImage: String = ""
+    var selectedImage: UIImage!
     var nameLbl: String = ""
     var noteLbl: String = ""
     var quantityLbl: String = ""
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedImage = discoverItem[indexPath.row].getImage()
+        selectedImage = discoverItem[indexPath.row].getUIImage()
         nameLbl = discoverItem[indexPath.row].getName()
         noteLbl = discoverItem[indexPath.row].getNote()
         quantityLbl = String(discoverItem[indexPath.row].getQuantity())
@@ -65,6 +70,19 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         discoverCollectionView.reloadData()
         self.discoverCollectionView.delegate = self
         self.discoverCollectionView.dataSource = self
+        
+        
+        ////////////Added by Alfian///////////
+//        loadingIndicator = loadingIndicator(view: self.view)
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters   //higher accuracy will needs more resource such internet quota, battery
+            locationManager.startMonitoringSignificantLocationChanges()
+                        var latitude = locationManager.location?.coordinate.latitude
+                        var longitude = locationManager.location?.coordinate.longitude
+            //
+                        print("\(String(describing: latitude)),\(String(describing: longitude))")
+        }
         
     }
     

@@ -8,13 +8,10 @@
 
 import UIKit
 
-class HomeTableViewCell: UITableViewCell {
+class AddViewCell: UITableViewCell {
     
-    @IBOutlet weak var noteOfImage: UILabel!
-    @IBOutlet weak var expiredDateOfImage: UILabel!
-    @IBOutlet weak var imageName: UILabel!
-    @IBOutlet weak var detailImage: UIImageView!
-    @IBOutlet weak var indicator: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var expLabel: UILabel!
     
     
     override func awakeFromNib() {
@@ -29,4 +26,5 @@ class HomeTableViewCell: UITableViewCell {
     }
     
 }
+
 
