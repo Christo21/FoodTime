@@ -10,5 +10,8 @@ import UIKit
 class DiscoverCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var detailImageView: UIImageView!
+    @IBOutlet weak var distance: UILabel!
+    @IBOutlet weak var itemName: UILabel!
+    @IBOutlet weak var itemNote: UILabel!
     
 }

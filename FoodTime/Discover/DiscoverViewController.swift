@@ -20,6 +20,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var discoverItem:[Item] = []
     func loadItems(){
+        
         let Burger: Item = Item(name: "Burger", quantity: 2, image: "camera", price: 20000, note: "This is your Burger", registDate: Date(timeIntervalSinceNow: 0), expiredDate: Date(timeIntervalSinceNow: 60))
         
         var items: [Item] = []
@@ -34,6 +35,9 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = discoverCollectionView.dequeueReusableCell(withReuseIdentifier: "detailCell", for: indexPath) as! DiscoverCollectionViewCell
         cell.detailImageView.image = UIImage(named: discoverItem[indexPath.row].getImage())
+        cell.distance.text = "250m away"
+        cell.itemName.text = discoverItem[indexPath.row].getName()
+        cell.itemNote.text = discoverItem[indexPath.row].getNote()
         return cell
     }
     
