@@ -1,4 +1,4 @@
-//
+///Users/petrapradnyapramesthi/Documents/FoodTime/FoodTime/Base.lproj/Main.storyboard
 //  RegistViewController.swift
 //  FoodTime
 //
@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
+import SwiftKeychainWrapper
 
-class RegistViewController: UIViewController {
+class RegistViewController: UIViewController, UITextFieldDelegate{
 
     @IBAction func loginButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -20,8 +24,26 @@ class RegistViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passField: UITextField!
-    
     @IBOutlet weak var pass2Field: UITextField!
+    
+    var userUid: String!
+    
+    @IBAction func Register(_ sender: UIButton){
+        if let email = emailField.text, let password = passField.text, let username = usernameField.text{
+            print("\(email) \(password)")
+            Auth.auth().createUser(withEmail: email, password: password, completion: {(user, error) in
+                if error != nil {
+                    print("Cant create user")
+                } else {
+                    if let user = user {
+                        self.userUid = user.uid
+                        self.performSegue(withIdentifier: "toMessages", sender: nil)
+                    }
+                }
+            })
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +52,28 @@ class RegistViewController: UIViewController {
         emailField.frame.size.height = 40
         passField.frame.size.height = 40
         pass2Field.frame.size.height = 40
+        
+        passField.delegate = self
+        pass2Field.delegate = self
+        
         hideKeyboardWhenTappedAround()
     }
-
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == self.pass2Field {
+            animation(y: -80)
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == self.pass2Field {
+            animation(y: 80)
+        }
+    }
+    func animation(y: CGFloat) {
+        UIView .beginAnimations(nil, context: nil)
+        UIView .setAnimationDelegate(self)
+        UIView .setAnimationDuration(0.5)
+        UIView .setAnimationBeginsFromCurrentState(true)
+        self.view.frame = CGRect(x: self.view.frame.origin.x, y: (self.view.frame.origin.y + y), width: self.view.frame.size.width, height: self.view.frame.size.height)
+        UIView .commitAnimations()
+    }
 }

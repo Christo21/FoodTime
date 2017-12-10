@@ -13,7 +13,7 @@
 		680BE3F31FDBF2390067A5A2 /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680BE3F21FDBF2390067A5A2 /* ProfileViewCell.swift */; };
 		68CAA69A1FDB83BB00D288A2 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CAA6991FDB83BB00D288A2 /* LoadingIndicatorView.swift */; };
 		68F474631FDD165400B703C6 /* RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F474621FDD165400B703C6 /* RegistViewController.swift */; };
-		6B3F754F1FDA8A6700D16E86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B3F754E1FDA8A6600D16E86 /* GoogleService-Info.plist */; };
+		68F474671FDD271900B703C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68F474661FDD271900B703C6 /* GoogleService-Info.plist */; };
 		6B653FB71FD7A06D00501D13 /* CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */; };
 		F30B373D1FD6A2C800F94768 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B373C1FD6A2C800F94768 /* Share.swift */; };
 		F31225901FCE9889005E8CA0 /* NavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */; };
@@ -44,7 +44,7 @@
 		680BE3F21FDBF2390067A5A2 /* ProfileViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewCell.swift; sourceTree = "<group>"; };
 		68CAA6991FDB83BB00D288A2 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		68F474621FDD165400B703C6 /* RegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistViewController.swift; sourceTree = "<group>"; };
-		6B3F754E1FDA8A6600D16E86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		68F474661FDD271900B703C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B653FB61FD7A06D00501D13 /* CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClass.swift; sourceTree = "<group>"; };
 		91B5D6D4C73854A460746221 /* Pods-FoodTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodTime/Pods-FoodTime.release.xcconfig"; sourceTree = "<group>"; };
 		F30B373C1FD6A2C800F94768 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
@@ -112,13 +112,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		F312258E1FCE92C9005E8CA0 /* Message */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Message;
-			sourceTree = "<group>";
-		};
 		F324D5F01FCEB8DD0093172F /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,7 +162,7 @@
 		F3BFC2881FCD339E00062C00 = {
 			isa = PBXGroup;
 			children = (
-				6B3F754E1FDA8A6600D16E86 /* GoogleService-Info.plist */,
+				68F474661FDD271900B703C6 /* GoogleService-Info.plist */,
 				F3BFC2931FCD339E00062C00 /* FoodTime */,
 				F3BFC2921FCD339E00062C00 /* Products */,
 				B275CB3DCC370A19C7F2FBB8 /* Pods */,
@@ -194,7 +187,6 @@
 				F324D6381FD53AA40093172F /* Discover */,
 				F324D62F1FD52EAC0093172F /* MyList */,
 				F324D5F01FCEB8DD0093172F /* Login */,
-				F312258E1FCE92C9005E8CA0 /* Message */,
 				6B653FB51FD7A03100501D13 /* Class */,
 				F312258F1FCE9889005E8CA0 /* NavigationBarViewController.swift */,
 				F3BFC2961FCD339E00062C00 /* ViewController.swift */,
@@ -279,7 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3BFC2A21FCD339E00062C00 /* LaunchScreen.storyboard in Resources */,
-				6B3F754F1FDA8A6700D16E86 /* GoogleService-Info.plist in Resources */,
+				68F474671FDD271900B703C6 /* GoogleService-Info.plist in Resources */,
 				F3BFC29F1FCD339E00062C00 /* Assets.xcassets in Resources */,
 				F3BFC29A1FCD339E00062C00 /* Main.storyboard in Resources */,
 			);
