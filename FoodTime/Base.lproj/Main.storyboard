@@ -1053,9 +1053,6 @@
                                                 </fragment>
                                             </attributedString>
                                         </state>
-                                        <connections>
-                                            <action selector="sendPressedWith_sender:" destination="A7X-gh-zWr" eventType="touchUpInside" id="Bup-Kz-lbj"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1085,9 +1082,6 @@
                                         <state key="normal" title="Back">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="backPressedWith_sender:" destination="A7X-gh-zWr" eventType="touchUpInside" id="Tgb-SI-u9z"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.31846320630000002" green="0.64726001020000001" blue="0.87064504620000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1147,11 +1141,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="jCC-3R-YWx"/>
                     </view>
-                    <connections>
-                        <outlet property="messageField" destination="SFW-Xm-QjR" id="sVe-6n-PRl"/>
-                        <outlet property="sendButton" destination="ax8-OD-bmr" id="uBS-WG-1b8"/>
-                        <outlet property="tableView" destination="8ux-tV-ZBn" id="rnJ-sF-Bib"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6y-37-KCd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
