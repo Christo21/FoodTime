@@ -59,6 +59,7 @@ class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
         datePicker.date = shareDate
         
         setDate()
+        setupNavigationBarItem()
     }
     
     func setDate() {
@@ -157,6 +158,14 @@ class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
             return unitData[row]
         }
         return ""
+    }
+    public func setupNavigationBarItem(){
+        //kiri
+        let leftButton = UIButton(type: .system)
+        leftButton.setImage(#imageLiteral(resourceName: "mail").withRenderingMode(.alwaysOriginal), for: .normal)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        leftButton.contentMode = .scaleAspectFit
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
     }
     
     override var canBecomeFirstResponder: Bool {

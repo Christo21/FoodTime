@@ -17,6 +17,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @IBOutlet weak var discoverCollectionView: UICollectionView!
     @IBOutlet weak var discoverFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var emptyView: UIView!
     
     var itemCoreData: CoreDataClass = CoreDataClass(entity: "ItemModel")
     var discoverItem:[Item] = []
@@ -38,8 +39,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         cell.detailImageView.image = discoverItem[indexPath.row].getUIImage()
         
         if indexPath.row % 2 == 0 {
-            let width = (self.discoverCollectionView.frame.width-15.0)/2.0
-            let height = (self.discoverCollectionView.frame.width-15.0)/2.0
+            let width = (self.discoverCollectionView.frame.width)/2.0
+            let height = (self.discoverCollectionView.frame.width)/2.0
             cell.detailImageView.frame = CGRect(x: 5, y: 5, width: width , height: height)
             cell.background.frame = CGRect(x: 5, y: height - 65, width: width, height: 70)
             cell.itemName.frame = CGRect(x: 10, y: height - 60, width: width-5, height: 20)
@@ -105,6 +106,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewWillAppear(_ animated: Bool) {
         discoverItem.removeAll()
         loadItems()
+        isEmpty()
         discoverCollectionView.reloadData()
     }
     override func viewDidLoad() {
@@ -120,7 +122,7 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.discoverCollectionView.delegate = self
         self.discoverCollectionView.dataSource = self
         
-        
+        isEmpty()
         ////////////Added by Alfian///////////
 //        loadingIndicator = loadingIndicator(view: self.view)
         locationManager.requestWhenInUseAuthorization()
@@ -134,6 +136,15 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
     }
+    
+    func isEmpty() {
+        if discoverItem.count > 0 {
+            emptyView.isHidden = true
+        } else {
+            emptyView.isHidden = false
+        }
+    }
+    
     public func setupNavigationBarItem(){
         //kiri
         let leftButton = UIButton(type: .system)

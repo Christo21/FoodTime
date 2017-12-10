@@ -152,6 +152,7 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         if self.validating() {
             alert = UIAlertController(title: "Successfull", message: "Your item has added to your list", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
+                
                 _ = self.navigationController?.popToRootViewController(animated: false)
             }))
         } else {

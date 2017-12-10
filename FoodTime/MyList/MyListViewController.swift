@@ -23,7 +23,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        isEmpty()
         setupNavigationBarItem()
         loadItems()
         filteredItem = homeItem
@@ -35,13 +35,23 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         
     }
     
+    
+    @IBOutlet weak var emptyView: UIView!
+    
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
         reload()
         filteredItem = homeItem
+        isEmpty()
         homeTableView.reloadData()
     }
-    
-    
+    func isEmpty() {
+        if filteredItem.count > 0 {
+            emptyView.isHidden = true
+        } else {
+            emptyView.isHidden = false
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredItem.count
     }
@@ -120,6 +130,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             self.itemCoreData.deleteData(key: "registDate", value: self.filteredItem[indexPath.row].getRegistDate())
             self.filteredItem.remove(at: indexPath.row)
             self.homeItem.remove(at: indexPath.row)
+            self.isEmpty()
             self.homeTableView.reloadData()
             success(true)
         }
