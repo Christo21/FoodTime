@@ -23,6 +23,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passField: UITextField!
     
     var userUid : String!
+    var userCoreData: CoreDataClass = CoreDataClass(entity: "UserModel")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,22 +36,29 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         hideKeyboardWhenTappedAround()
         
-        if let _ = KeychainWrapper.standard.string(forKey: "uid") {
-            performSegue(withIdentifier: "toMessagesFromLogin", sender: nil)
+        if userCoreData.getData().count > 0 {
+            print("Masuk")
+            self.performSegue(withIdentifier: "toMessagesFromLogin", sender: nil)
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        if userCoreData.getData().count > 0 {
+            self.performSegue(withIdentifier: "toMessagesFromLogin", sender: nil)
         }
     }
     var sharedImage: UIImage!
     var sharedName: String = ""
     var note: String = ""
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toMessagesFromLogin" {
-            let destination = segue.destination as! MessageViewController
-            destination.sharedImage = sharedImage
-            destination.sharedName = sharedName
-            destination.note = note
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toMessagesFromLogin" {
+//            let destination = segue.destination as! MessageViewController
+//            destination.sharedImage = sharedImage
+//            destination.sharedName = sharedName
+//            destination.note = note
+//        }
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == nameField {
@@ -82,6 +90,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         }
         return valid
     }
+    
     
     @IBAction func Login(_ sender: UIButton) {
         if validation() {

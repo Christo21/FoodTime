@@ -227,7 +227,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     
     public func setupNavigationBarItem(){
         //kiri
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"mail"), style: .plain, target: self, action: #selector(addTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"mail"), style: .plain, target: self, action: #selector(messageTapped))
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"plus"), style: .plain, target: self, action: #selector(addTapped))
         
@@ -235,7 +235,9 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     
     @objc func addTapped(sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "addItem", sender: nil)
-        
+    }
+    @objc func messageTapped(sender: UIBarButtonItem){
+        self.performSegue(withIdentifier: "LoginFromMyList", sender: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditItem" {

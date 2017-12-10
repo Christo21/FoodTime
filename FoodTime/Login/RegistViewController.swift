@@ -27,16 +27,20 @@ class RegistViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var pass2Field: UITextField!
     
     var userUid: String!
+    var userCoreData: CoreDataClass = CoreDataClass(entity: "UserModel")
     
     @IBAction func Register(_ sender: UIButton){
         if let email = emailField.text, let password = passField.text, let username = usernameField.text{
             print("\(email) \(password)")
+            
             Auth.auth().createUser(withEmail: email, password: password, completion: {(user, error) in
                 if error != nil {
                     print("Cant create user")
                 } else {
                     if let user = user {
                         self.userUid = user.uid
+                        let user = User(name: username, password: password, address: "", id: user.uid)
+                        self.userCoreData.saveData(object: user)
                         self.performSegue(withIdentifier: "toMessages", sender: nil)
                     }
                 }

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import SwiftKeychainWrapper
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -14,7 +17,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         print(shareItem.count)
         return shareItem.count
     }
-    
+    @IBAction func signOut (_ sender: AnyObject){
+        try! Auth.auth().signOut()
+        KeychainWrapper.standard.removeObject(forKey: "uid")
+        dismiss(animated: true, completion: nil)
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = profileCollectionView.dequeueReusableCell(withReuseIdentifier: "itemDetailCell", for: indexPath) as! ProfileViewCell
         

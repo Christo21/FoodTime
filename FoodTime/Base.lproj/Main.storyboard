@@ -145,6 +145,7 @@
                         <outlet property="searchDisplayController" destination="zp1-2p-0Fp" id="Y35-KX-buG"/>
                         <segue destination="0pg-Mp-wHJ" kind="show" identifier="EditItem" id="uIK-hC-Epv"/>
                         <segue destination="esr-az-bC1" kind="show" identifier="ShareItem" id="R7W-58-J2R"/>
+                        <segue destination="y6Q-r0-Rih" kind="showDetail" identifier="LoginFromMyList" id="dfD-U2-cGr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecf-NT-wm6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -713,7 +714,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="WpJ-4B-Y00"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="FE0-Pa-9Qn"/>
+                    <navigationItem key="navigationItem" title="Profile" id="FE0-Pa-9Qn">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="Zeh-rv-7UV">
+                            <connections>
+                                <action selector="signOut:" destination="MMU-1q-B7H" id="Zlz-eX-6aZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageViewProfile" destination="KmB-ls-cfU" id="bl9-ti-lwG"/>
                         <outlet property="profileCollectionView" destination="fmu-HW-1B7" id="pSF-1y-JDH"/>
@@ -1014,7 +1021,7 @@
                         <segue destination="zwB-pO-xWi" kind="show" identifier="toSignUp" id="to3-RF-UIV">
                             <nil key="action"/>
                         </segue>
-                        <segue destination="A7X-gh-zWr" kind="showDetail" identifier="toMessagesFromLogin" id="LUO-ZL-EIJ"/>
+                        <segue destination="s8l-Hc-Sf2" kind="showDetail" identifier="toMessagesFromLogin" id="eLx-1A-f42"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BqQ-xj-nRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1188,10 +1195,10 @@
             </objects>
             <point key="canvasLocation" x="4168.8000000000002" y="631.93403298350825"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Chat View Controller-->
         <scene sceneID="w8r-Ua-dWS">
             <objects>
-                <viewController id="s8l-Hc-Sf2" customClass="SearchViewController" customModule="FoodTime" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="s8l-Hc-Sf2" customClass="ChatViewController" customModule="FoodTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Amd-Kz-gij">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1214,6 +1221,9 @@
                                         <state key="normal" title="&lt; Back">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="back:" destination="s8l-Hc-Sf2" eventType="touchUpInside" id="AjZ-KD-pqS"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.31846320630000002" green="0.64726001020000001" blue="0.87064504620000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1223,7 +1233,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="NvE-AN-wqU" customClass="searchTableViewCell" customModule="FoodTime" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="NvE-AN-wqU" customClass="MessageDetailTableViewCell" customModule="FoodTime" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NvE-AN-wqU" id="h4g-iQ-HTg">
@@ -1231,7 +1241,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7Y-Hl-Sdc">
-                                                    <rect key="frame" x="159" y="-4" width="216" height="19"/>
+                                                    <rect key="frame" x="94" y="0.0" width="216" height="19"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.31846320630000002" green="0.64726001020000001" blue="0.87064504620000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1241,11 +1251,19 @@
                                                     <rect key="frame" x="35" y="0.0" width="39" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQy-Nx-ua4">
+                                                    <rect key="frame" x="94" y="14" width="216" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.31846320630000002" green="0.64726001020000001" blue="0.87064504620000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="image" destination="Epq-Ev-8Cd" id="BZg-yt-iNL"/>
-                                            <outlet property="nameLbl" destination="s7Y-Hl-Sdc" id="1G8-X4-gir"/>
+                                            <outlet property="charPreview" destination="kQy-Nx-ua4" id="LWb-tc-JgX"/>
+                                            <outlet property="recipientName" destination="s7Y-Hl-Sdc" id="rUN-MP-mCB"/>
+                                            <outlet property="recpientImg" destination="Epq-Ev-8Cd" id="tAA-ny-xwa"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1260,12 +1278,13 @@
                         <viewLayoutGuide key="safeArea" id="MmM-Eh-FYi"/>
                     </view>
                     <connections>
-                        <outlet property="searchBar" destination="3dc-e6-N52" id="Xsh-bk-Ako"/>
-                        <outlet property="tableView" destination="yx8-lM-TFz" id="C3T-vB-eP9"/>
-                        <segue destination="A7X-gh-zWr" kind="show" id="LE9-dZ-S6t"/>
+                        <outlet property="tableView" destination="yx8-lM-TFz" id="FL5-Zd-Fch"/>
+                        <segue destination="A7X-gh-zWr" kind="show" id="qGP-lU-zap"/>
+                        <segue destination="N4D-Zh-7xb" kind="unwind" identifier="unwindToBack" unwindAction="unwindToBackWithSegue:" id="Pal-Ga-arj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDX-WD-h24" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="N4D-Zh-7xb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3392.8000000000002" y="631.93403298350825"/>
         </scene>
@@ -1359,7 +1378,7 @@
                         <outlet property="registButton" destination="crZ-ao-Fub" id="MgS-bt-lL1"/>
                         <outlet property="usernameField" destination="eD4-Rk-NkN" id="XZO-bP-dsb"/>
                         <segue destination="MGh-IO-o7I" kind="unwind" identifier="unwindToDetailDiscover" unwindAction="unwindToDetailDiscoverWithSegue:" id="gVY-wV-tlA"/>
-                        <segue destination="A7X-gh-zWr" kind="showDetail" identifier="toMessages" id="0Nb-l5-VJn"/>
+                        <segue destination="s8l-Hc-Sf2" kind="show" identifier="toMessages" id="SXi-2o-s3R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYy-O5-L4t" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1383,7 +1402,8 @@
         <image name="user" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LE9-dZ-S6t"/>
+        <segue reference="eLx-1A-f42"/>
+        <segue reference="dfD-U2-cGr"/>
         <segue reference="R7W-58-J2R"/>
         <segue reference="uIK-hC-Epv"/>
         <segue reference="lj9-Qh-lK9"/>

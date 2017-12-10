@@ -61,6 +61,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         messageTableView.dataSource = self
         messageTableView.rowHeight = UITableViewAutomaticDimension
         messageTableView.estimatedRowHeight = 300
+
         
         if messageId != "" && messageId != nil{
             loadData()
@@ -80,6 +81,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func loadData(){
+        print("MASUK")
         Database.database().reference().child("messages").child(messageId).observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 self.messages.removeAll()

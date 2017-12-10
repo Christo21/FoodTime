@@ -142,5 +142,6 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
         leftButton.contentMode = .scaleAspectFit
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftButton)
     }
+    @IBAction func unwindToBack(segue:UIStoryboardSegue) {    }
 }
 
