@@ -24,6 +24,9 @@ class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     var numberData: [Int] = []
     var unitData: [String] = ["ons", "gram", "kg", "liter(s)", "piece(s)", "bottle(s)", "bag(s)", "can(s)", "jar(s)", "bundle(s)", "glass(es)"]
     
+    var shareName: String = ""
+    var shareDate: Date = Date()
+    
     @IBAction func photoButtonDidTap(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePicker = UIImagePickerController()
@@ -51,6 +54,9 @@ class ShareFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
         notesView.layer.borderWidth = 1
         notesView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         notesView.layer.cornerRadius = 8
+        
+        nameField.text = shareName
+        datePicker.date = shareDate
         
         setDate()
     }

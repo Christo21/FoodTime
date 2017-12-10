@@ -13,5 +13,5 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var itemNote: UILabel!
-    
+    @IBOutlet weak var background: UILabel!
 }

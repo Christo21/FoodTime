@@ -10,6 +10,15 @@ import UIKit
 
 class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    var editName: String = ""
+    var editDate: Date = Date()
+    var editPic: UIImage = #imageLiteral(resourceName: "camera")
+    //var editQty:
+    var editPrice: String = ""
+    var editNote: String = ""
+    var titleForm: String = "Add Item"
+   
+    
     let itemData: itemDataList = itemDataList()
     var itemDataLists: [itemDataList.itemData] = []
     
@@ -27,6 +36,15 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         cell.expLabel.text = "Expiration date: +\(itemDataLists[indexPath.row].getExpiredDays()) days"
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        nameField.text = itemDataLists[indexPath.row].getName()
+        let days = itemDataLists[indexPath.row].getExpiredDays()
+        datePicker.date = Calendar.current.date(byAdding: .day, value: days, to: Date())!
+        
+        ListView.isHidden = true
+        minimizeButton.isHidden = true
     }
     
     
@@ -59,7 +77,8 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .camera;
-            imagePicker.allowsEditing = false
+            imagePicker.allowsEditing = true
+            
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
@@ -93,6 +112,15 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         setDate()
         nameField.addTarget(self, action: #selector(showList), for: UIControlEvents.touchDown)
         nameField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
+        nameField.text = editName
+        datePicker.date = editDate
+        photo.setImage(editPic, for: .normal)
+        priceField.text = editPrice
+        notesView.text = editNote
+        
+        self.title = titleForm
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     @objc func showList() {
@@ -120,7 +148,7 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     @IBAction func saving(_ sender: UIBarButtonItem) {
         let alert: UIAlertController!
-        
+        view.endEditing(true)
         if self.validating() {
             alert = UIAlertController(title: "Successfull", message: "Your item has added to your list", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
@@ -163,7 +191,8 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in }))
             self.present(alert, animated: true, completion: nil)
         } else {
-            let imageData:NSData = UIImagePNGRepresentation(photo.currentImage!)! as NSData as NSData
+            let newPhoto = photo.currentImage?.rotateImageByDegrees(90)
+            let imageData:NSData = UIImagePNGRepresentation(newPhoto!)! as NSData as NSData
             picture = imageData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         }
         if notesView.text != nil{
@@ -173,7 +202,7 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         if !valid {
             return false
         } else {
-            let item = Item(name: name, quantity: Int(qty)!, image: picture, price: Int(price)!, note: note, registDate: Date(), expiredDate: datePicker.date) //JANGAN LUPA GANTI EXP DATE
+            let item = Item(name: name, quantity: 1, image: picture, price: Int(price)!, note: note, registDate: Date(), expiredDate: datePicker.date) //JANGAN LUPA GANTI EXP DATE
             
             delegate?.scheduleNotification(item)
             
@@ -222,6 +251,8 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == nameField {
+            ListView.isHidden = true
+            minimizeButton.isHidden = true
             priceField.becomeFirstResponder()
         } else {
             self.becomeFirstResponder()
@@ -262,3 +293,35 @@ class AddFormViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
 }
 
+extension UIImage {
+    
+    public func rotateImageByDegrees(_ degrees: CGFloat) -> UIImage {
+        
+        let degreesToRadians: (CGFloat) -> CGFloat = {
+            return $0 / 180.0 * CGFloat(Double.pi)
+        }
+        
+        // calculate the size of the rotated view's containing box for our drawing space
+        let rotatedViewBox = UIView(frame: CGRect(origin: CGPoint.zero, size: self.size))
+        let t = CGAffineTransform(rotationAngle: degreesToRadians(degrees));
+        rotatedViewBox.transform = t
+        let rotatedSize = rotatedViewBox.frame.size
+        
+        // Create the bitmap context
+        UIGraphicsBeginImageContext(rotatedSize)
+        let bitmap = UIGraphicsGetCurrentContext()
+        
+        // Move the origin to the middle of the image so we will rotate and scale around the center.
+        bitmap?.translateBy(x: rotatedSize.width / 2.0, y: rotatedSize.height / 2.0);
+        
+        // Rotate the image context
+        bitmap?.rotate(by: degreesToRadians(degrees));
+        
+        // Now, draw the rotated/scaled image into the context
+        bitmap?.scaleBy(x: 1.0, y: -1.0)
+        bitmap?.draw(self.cgImage!, in: CGRect(x: -self.size.width / 2, y: -self.size.height / 2, width: self.size.width, height: self.size.height))
+        
+        let cgimage:CGImage  = bitmap!.makeImage()!
+        return UIImage(cgImage: cgimage)
+    }
+}

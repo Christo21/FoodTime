@@ -31,7 +31,7 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
         self.homeSearchBar.delegate = self
-
+        hideKeyboardWhenTappedAround()
         
     }
     
@@ -57,11 +57,17 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         
         let dataDecoded : Data = Data(base64Encoded: filteredItem[indexPath.row].getImage(), options: .ignoreUnknownCharacters)!
         
-        cell.detailImage.image = UIImage(data: dataDecoded as Data)!
+        let qty = filteredItem[indexPath.row].getQuantity()
         
-        cell.expiredDateOfImage.text = newDate
+        cell.detailImage.image = UIImage(data: dataDecoded as Data)!
+        cell.detailImage.layer.cornerRadius = 8
+        cell.detailImage.clipsToBounds = true
+        
+        cell.expiredDateOfImage.text = "Expired in \(newDate)"
         cell.imageName.text = filteredItem[indexPath.row].getName()
         cell.noteOfImage.text = filteredItem[indexPath.row].getNote()
+        cell.noteOfImage.sizeToFit()
+        cell.qty.text = "・qty: \(filteredItem[indexPath.row].getQuantity())"
         
         cell.indicator.textColor = colorOfIndicator(item: filteredItem[indexPath.row])
         
@@ -93,16 +99,21 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let shareAction = UIContextualAction(style: .normal, title: "Share") { (ac, view, success) in
-            //should be link to share view
+            self.sharingItem = self.filteredItem[indexPath.row]
+            self.performSegue(withIdentifier: "ShareItem", sender: nil)
             success(true)
         }
         shareAction.backgroundColor = #colorLiteral(red: 0.1803921569, green: 0.8, blue: 0.4431372549, alpha: 1)
         return UISwipeActionsConfiguration(actions: [shareAction])
     }
     
+    var editingItem: Item!
+    var sharingItem: Item!
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let editAction = UIContextualAction(style: .normal, title: "Edit"){ (ac, view, success)in
-            //should be linked to edit menu
+            self.editingItem = self.filteredItem[indexPath.row]
+            self.performSegue(withIdentifier: "EditItem", sender: nil)
             success(true)
         }
         let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (ac, view, success) in
@@ -126,6 +137,13 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
             }
             self.homeTableView.reloadData()
         }
+    }
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        self.becomeFirstResponder()
     }
     
     func reload() {
@@ -219,7 +237,36 @@ class MyListViewController: UIViewController , UITableViewDelegate, UITableViewD
         self.performSegue(withIdentifier: "addItem", sender: nil)
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditItem" {
+            let destination = segue.destination as! AddFormViewController
+            destination.editName = editingItem.getName()
+            destination.editDate = editingItem.getExipredDate()
+            destination.editPic = editingItem.getUIImage()
+            //destination.qtyPicker
+            destination.editPrice = String(describing: editingItem.getPrice())
+            destination.editNote = editingItem.getNote()
+            destination.titleForm = "Edit Item"
+        }
+        if segue.identifier == "ShareItem" {
+            let destination = segue.destination as! ShareFormViewController
+            destination.shareName = sharingItem.getName()
+            destination.shareDate = sharingItem.getExipredDate()
+        }
+    }
     
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 

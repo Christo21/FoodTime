@@ -15,6 +15,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var imageName: UILabel!
     @IBOutlet weak var detailImage: UIImageView!
     @IBOutlet weak var indicator: UILabel!
+    @IBOutlet weak var qty: UILabel!
     
     
     override func awakeFromNib() {

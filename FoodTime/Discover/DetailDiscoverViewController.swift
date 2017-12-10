@@ -27,16 +27,19 @@ class DetailDiscoverViewController: UIViewController {
     var name: String = ""
     var quantity: String = ""
     var expiredIn: String = "Expired in blabla days"
-    var distance: String = "blablabla m away"
+    var distance: String = "256 m away"
     var note: String = ""
     var hiddenButton: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         detailImageView.image = image
+        detailImageView.layer.cornerRadius = 8
+        detailImageView.clipsToBounds = true
+        
         detailNameView.text = name
-        detailQuantityView.text = quantity
-        detailExpiredView.text = expiredIn
+        detailQuantityView.text = "Quantity : \(quantity)"
+        detailExpiredView.text  = "Expired in \(expiredIn)"
         detailDistanceView.text = distance
         detailNoteView.text = note
         claimButton.layer.cornerRadius = 8
