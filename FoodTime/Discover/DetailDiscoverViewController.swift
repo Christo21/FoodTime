@@ -17,10 +17,9 @@ class DetailDiscoverViewController: UIViewController {
     @IBOutlet weak var detailExpiredView: UILabel!
     @IBOutlet weak var detailDistanceView: UILabel!
     
-    
     @IBOutlet weak var claimButton: UIButton!
-    @IBAction func detailClaimButton(_ sender: UIButton) {
-        
+    @IBAction func claimButtonDidTap(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toLogin", sender: sender)
     }
     
     var image: UIImage!
@@ -46,13 +45,11 @@ class DetailDiscoverViewController: UIViewController {
         claimButton.isHidden = hiddenButton
         // Do any additional setup after loading the view.
         self.title = "Detail Item"
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
         
     }
-    
-    
+    @IBAction func unwindToDetailDiscover(segue:UIStoryboardSegue) {
+        
+    }
 }
+
 

@@ -10,10 +10,23 @@ import UIKit
 
 class LoginController: UIViewController {
 
+    @IBOutlet weak var loginButton: UIButton!
+    @IBAction func cancelLoginButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    @IBAction func signUp(_ sender: UIButton) {
+        performSegue(withIdentifier: "toSignUp", sender: sender)
+    }
+    
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var passField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = UIColor(displayP3Red: 61/255, green: 91/255, blue: 151/255, alpha: 1)
+        loginButton.layer.cornerRadius = 8
+        nameField.frame.size.height = 40
+        passField.frame.size.height = 40
+        hideKeyboardWhenTappedAround()
     }
 
 }
