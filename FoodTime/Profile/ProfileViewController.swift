@@ -18,7 +18,39 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = profileCollectionView.dequeueReusableCell(withReuseIdentifier: "itemDetailCell", for: indexPath) as! ProfileViewCell
         
-        cell.detailImage.image = shareItem[indexPath.row].getUIImage()
+        cell.detailImage.image = self.shareItem[indexPath.row].getUIImage()
+        
+        if indexPath.row % 2 == 0 {
+            let width = (self.profileCollectionView.frame.width-15.0)/2.0
+            let height = (self.profileCollectionView.frame.width-15.0)/2.0
+            cell.detailImage.frame = CGRect(x: 5, y: 5, width: width , height: height)
+            cell.background.frame = CGRect(x: 5, y: height - 65, width: width, height: 70)
+            cell.itemName.frame = CGRect(x: 10, y: height - 60, width: width-5, height: 20)
+            cell.itemNote.frame = CGRect(x: 10, y: height - 40, width: width-5, height: 40)
+            cell.distance.frame = CGRect(x: width - 70 , y: 5, width: 75, height: 20)
+        } else {
+            let width = (self.profileCollectionView.frame.width-15.0)/2.0
+            let height = (self.profileCollectionView.frame.width-15.0)/2.0
+            
+            cell.detailImage.frame = CGRect(x: 2, y: 5, width: width, height: height)
+            cell.background.frame = CGRect(x: 2, y: height - 65, width: width, height: 70)
+            cell.itemName.frame = CGRect(x: 7, y: height - 60, width: width-5, height: 20)
+            cell.itemNote.frame = CGRect(x: 7, y: height - 40, width: width-5, height: 40)
+            cell.distance.frame = CGRect(x: width - 73 , y: 5, width: 75, height: 20)
+        }
+        
+        cell.itemNote.lineBreakMode = .byWordWrapping
+        cell.itemNote.numberOfLines = 3
+        cell.itemName.text = shareItem[indexPath.row].getName()
+        cell.itemNote.text = shareItem[indexPath.row].getNote()
+        
+        cell.background.layer.cornerRadius = 5
+        cell.detailImage.layer.cornerRadius = 5
+        cell.distance.layer.cornerRadius = 5
+        
+        cell.detailImage.clipsToBounds = true
+        cell.background.clipsToBounds = true
+        cell.distance.clipsToBounds = true
         
         return cell
     }

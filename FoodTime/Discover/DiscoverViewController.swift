@@ -110,6 +110,8 @@ class DiscoverViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewDidLoad() {
         loadItems()
         super.viewDidLoad()
+        
+        
         setupNavigationBarItem()
         
         discoverFlowLayout.itemSize = CGSize(width: (self.discoverCollectionView.frame.width-1.0)/2.0, height: (self.discoverCollectionView.frame.width-5.0)/2.0)

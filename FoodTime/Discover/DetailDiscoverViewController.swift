@@ -45,6 +45,7 @@ class DetailDiscoverViewController: UIViewController {
         claimButton.layer.cornerRadius = 8
         claimButton.isHidden = hiddenButton
         // Do any additional setup after loading the view.
+        self.title = "Detail Item"
     }
     
     override func didReceiveMemoryWarning() {
