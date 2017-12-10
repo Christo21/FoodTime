@@ -22,6 +22,17 @@ class DetailDiscoverViewController: UIViewController {
         self.performSegue(withIdentifier: "toLogin", sender: sender)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toLogin" {
+            let destination = segue.destination as! LoginController
+            destination.sharedImage = detailImageView.image
+            destination.sharedName = detailNameView.text!
+            destination.note = detailNoteView.text!
+        }
+    }
+    
+    var shareItem: Share!
+    
     var image: UIImage!
     var name: String = ""
     var quantity: String = ""
@@ -47,9 +58,8 @@ class DetailDiscoverViewController: UIViewController {
         self.title = "Detail Item"
         
     }
-    @IBAction func unwindToDetailDiscover(segue:UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindToDetailDiscover(segue:UIStoryboardSegue) {    }
+    
 }
 
 

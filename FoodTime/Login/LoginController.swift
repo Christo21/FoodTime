@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBAction func cancelLoginButton(_ sender: UIButton) {
@@ -29,7 +29,36 @@ class LoginController: UIViewController {
         loginButton.layer.cornerRadius = 8
         nameField.frame.size.height = 40
         passField.frame.size.height = 40
+        
+        nameField.delegate = self
+        passField.delegate = self
+        
         hideKeyboardWhenTappedAround()
+        
+        if let _ = KeychainWrapper.standard.string(forKey: "uid") {
+            performSegue(withIdentifier: "toMessagesFromLogin", sender: nil)
+        }
+    }
+    var sharedImage: UIImage!
+    var sharedName: String = ""
+    var note: String = ""
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMessagesFromLogin" {
+            let destination = segue.destination as! MessageViewController
+            destination.sharedImage = sharedImage
+            destination.sharedName = sharedName
+            destination.note = note
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == nameField {
+            passField.becomeFirstResponder()
+        } else if textField == passField {
+            Login(loginButton)
+        }
+        return false
     }
     
     var user: String = ""
